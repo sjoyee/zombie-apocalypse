@@ -29,13 +29,14 @@ public class Zombie extends ZombieActor {
 	private int numOfArms;
 	private int numOfLegs;
 	private double PROB;
-	private boolean isSecondTurn = false;
+	private boolean isSecondTurn;
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
 		numOfArms = 0;
 		numOfLegs = 0;
 		PROB = 0.5;
+		isSecondTurn = false;
 		this.addItemToInventory(new Limbs("arms",'A'));
 		this.addItemToInventory(new Limbs("arms",'A'));
 		this.addItemToInventory(new Limbs("legs",'l'));
@@ -78,7 +79,9 @@ public class Zombie extends ZombieActor {
 		for (Action drop : dropActions) {
 			drop.execute(this, map);
 		}
-		System.out.println(nameOfActor + " has drop all weapons");
+		if (dropActions.size() != 0) {
+			System.out.println(nameOfActor + " has drop all weapons");
+		}
 	}
 
 	private Action returnAction(Behaviour[] behaviourArray, GameMap map){
@@ -126,11 +129,11 @@ public class Zombie extends ZombieActor {
 		if (numOfLegs == 1){
 			if (!isSecondTurn){
 				isSecondTurn = true;
-				return returnAction(behaviours, map);
+				return returnAction(behavioursWithoutLegs, map);
 			}
 			else{
 				isSecondTurn = false;
-				return returnAction(behavioursWithoutLegs, map);
+				return returnAction(behaviours, map);
 			}
 		}
 		if (numOfLegs == 0) {
