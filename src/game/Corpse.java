@@ -23,9 +23,10 @@ public class Corpse extends Item {
         turn ++;
 
         if(!initialActor.hasCapability(ZombieCapability.UNDEAD)){
-            int lo = 5;
-            int hi = 11;
-            int range = random.nextInt(hi-lo) + lo;
+            int lo, hi, range;
+            lo = 5;
+            hi = 11;
+            range = random.nextInt(hi-lo) + lo;
             if (turn == range && !currentLocation.containsAnActor()){
                 Zombie turnedZombie = new Zombie(name);
                 currentLocation.addActor(turnedZombie);
