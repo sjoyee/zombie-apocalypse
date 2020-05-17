@@ -36,9 +36,22 @@ public class Human extends ZombieActor {
 		super(name, displayChar, hitPoints, ZombieCapability.ALIVE);
 	}
 
+	protected Action returnEatAction(GameMap map){
+		if (hitPoints < maxHitPoints){
+			Action eatAction = new EatBehaviour().getAction(this, map);
+			if (eatAction != null) {
+				return eatAction;
+			}
+		}
+		return null;
+	}
+
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// FIXME humans are pretty dumb, maybe they should at least run away from zombies?
+		if (returnEatAction(map) != null){
+			return returnEatAction(map);
+		}
 		return behaviour.getAction(this, map);
 	}
 
