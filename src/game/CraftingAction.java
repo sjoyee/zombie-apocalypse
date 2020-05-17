@@ -21,13 +21,13 @@ public class CraftingAction extends Action{
 		String result = "";
 		if(executable) {
 			for(Item item  : actor.getInventory()) {
-				if(item.hasCapability(LimbsCapability.LEG)) {
+				if(item.getDisplayChar() == 'l') {
 				actor.removeItemFromInventory(item);
 				ZombieMace newMace = new ZombieMace();
 				actor.addItemToInventory(newMace);
 				result += "A mace is crafted";
 			}
-				else if(item.hasCapability(LimbsCapability.ARM)) {
+				else if(item.getDisplayChar() == 'A') {
 					actor.removeItemFromInventory(item);
 					ZombieClub newClub = new ZombieClub();
 					actor.addItemToInventory(newClub);

@@ -9,15 +9,15 @@ public class SimpleClub extends WeaponItem{
 		allowableActions.add( new CraftingAction());
 		//this.addCapability(Craftable.UNPICKABLE);
 		this.addCapability(ItemCapability.CRAFTABLE);
-		setLimbsCapability(displayChar);
+//		setLimbsCapability(displayChar);
 	}
-	private void setLimbsCapability(char displayChar) {
-		if(displayChar == 'A') {
-			this.addCapability(LimbsCapability.ARM);
-		}
-		else if(displayChar == 'l') {
-			this.addCapability(LimbsCapability.LEG);
-		}
-	}
+//	private void setLimbsCapability(char displayChar) {
+//		if(displayChar == 'A') {
+//			this.addCapability(LimbsCapability.ARM);
+//		}
+//		else if(displayChar == 'l') {
+//			this.addCapability(LimbsCapability.LEG);
+//		}
+//	}
 
 }
