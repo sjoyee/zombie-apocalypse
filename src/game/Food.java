@@ -1,5 +1,7 @@
 package game;
 
+import game.actions.EatAction;
+
 public class Food extends PortableItem{
 
     public Food() {

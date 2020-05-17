@@ -2,6 +2,7 @@ package game;
 
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import game.actions.HarvestAction;
 
 public class Crop extends Item {
     private int age;

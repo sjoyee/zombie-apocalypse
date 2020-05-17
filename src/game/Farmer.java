@@ -5,6 +5,9 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Display;
+import game.behaviours.FertilizeBehaviour;
+import game.behaviours.HarvestBehaviour;
+import game.behaviours.SowBehaviour;
 
 public class Farmer extends Human{
     private Behaviour[] behaviours =
