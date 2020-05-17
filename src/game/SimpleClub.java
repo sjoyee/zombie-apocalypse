@@ -1,6 +1,7 @@
 package game;
 
 import edu.monash.fit2099.engine.WeaponItem;
+import game.actions.CraftingAction;
 
 public class SimpleClub extends WeaponItem{
 

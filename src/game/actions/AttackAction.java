@@ -1,4 +1,4 @@
-package game;
+package game.actions;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -9,6 +9,10 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
+import game.Corpse;
+import game.LimbsCapability;
+import game.SimpleClub;
+import game.ZombieCapability;
 
 /**
  * Special Action for attacking other Actors.

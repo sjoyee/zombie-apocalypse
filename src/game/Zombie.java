@@ -9,6 +9,10 @@ import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.HuntBehaviour;
+import game.behaviours.PickUpWeaponBehaviour;
+import game.behaviours.WanderBehaviour;
 
 /**
  * A Zombie.
