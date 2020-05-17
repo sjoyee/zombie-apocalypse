@@ -84,9 +84,7 @@ public class Zombie extends ZombieActor {
 	private Action returnAction(Behaviour[] behaviourArray, GameMap map){
 		for (Behaviour behaviour : behaviourArray) {
 			Action action = behaviour.getAction(this, map);
-			if (numOfLegs == 1){
-				isSecondTurn = !isSecondTurn;
-			}
+
 			if (action != null) {
 				return action;
 			}
@@ -127,9 +125,11 @@ public class Zombie extends ZombieActor {
 		}
 		if (numOfLegs == 1){
 			if (!isSecondTurn){
+				isSecondTurn = true;
 				return returnAction(behaviours, map);
 			}
 			else{
+				isSecondTurn = false;
 				return returnAction(behavioursWithoutLegs, map);
 			}
 		}
