@@ -76,7 +76,7 @@ public class AttackAction extends Action {
 					target.removeItemFromInventory(myLimbs.get(index));
 					SimpleClub s = new SimpleClub(limbs);
 					s.getDropAction().execute(target, map);
-					result += System.lineSeparator() + "drop a limb = " + x;
+					result += System.lineSeparator() + actor + "drop a limb = " + x;
 					}
 				}
 			}
