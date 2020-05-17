@@ -64,7 +64,12 @@ public class Application {
 			while (gameMap.at(x, y).containsAnActor());
 			gameMap.at(x,  y).addActor(new Human(name));	
 		}
-		
+
+		// Place some random farmers
+		gameMap.at(5,10).addActor(new Farmer("Farmer1"));
+		gameMap.at(15,20).addActor(new Farmer("Farmer2"));
+		gameMap.at(30,10).addActor(new Farmer("Farmer3"));
+
 		// place a simple weapon
 		gameMap.at(74, 20).addItem(new Plank());
 		
