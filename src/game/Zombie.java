@@ -80,7 +80,6 @@ public class Zombie extends ZombieActor {
 			}
 		}
 	}
-	
 
 	@Override
 	public IntrinsicWeapon getIntrinsicWeapon() {  //Changes for Zombie Attacks
