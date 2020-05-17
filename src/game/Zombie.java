@@ -25,12 +25,17 @@ public class Zombie extends ZombieActor {
 			new PickUpWeaponBehaviour(),
 			new WanderBehaviour()
 	};
-	private int numOfArms = 0;
-	private int numOfLegs = 0;
-	private double PROB = 0.5;
+	private Behaviour[] behavioursWithoutLegs = {new AttackBehaviour(ZombieCapability.ALIVE), new PickUpWeaponBehaviour()};
+	private int numOfArms;
+	private int numOfLegs;
+	private double PROB;
+	private boolean isSecondTurn = false;
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
+		numOfArms = 0;
+		numOfLegs = 0;
+		PROB = 0.5;
 		this.addItemToInventory(new Limbs("arms",'A'));
 		this.addItemToInventory(new Limbs("arms",'A'));
 		this.addItemToInventory(new Limbs("legs",'l'));
@@ -52,33 +57,41 @@ public class Zombie extends ZombieActor {
 		}
 		if (numOfArms == 0){
 			PROB = 1;
-			Actions dropActions = new Actions();
-			for (Item item : this.getInventory()) {
-				if(item.asWeapon()!=null) {
-					dropActions.add(item.getDropAction());
-				}
-			}
-			for (Action drop : dropActions) {	
-				drop.execute(this, map);
-			System.out.println( this.name + " has drop all weapons");
-		}
+			dropWeapons(name, map);
 		}
 		if(numOfArms == 1) {
 			PROB = 0.75;
 			Random rand = new Random();
 			if (rand.nextBoolean()) {
-				Actions dropActions = new Actions();
-				for (Item item : this.getInventory()) {
-					if(item.asWeapon()!=null) {
-						dropActions.add(item.getDropAction());
-					}
-				}
-				for (Action drop : dropActions) {	
-					drop.execute(this, map);
-				System.out.println( this.name + " has drop all weapons");
-				}
+				dropWeapons(name, map);
 			}
 		}
+	}
+
+	private void dropWeapons(String nameOfActor, GameMap map){
+		Actions dropActions = new Actions();
+		for (Item item : this.getInventory()) {
+			if(item.asWeapon()!= null) {
+				dropActions.add(item.getDropAction());
+			}
+		}
+		for (Action drop : dropActions) {
+			drop.execute(this, map);
+		}
+		System.out.println(nameOfActor + " has drop all weapons");
+	}
+
+	private Action returnAction(Behaviour[] behaviourArray, GameMap map){
+		for (Behaviour behaviour : behaviourArray) {
+			Action action = behaviour.getAction(this, map);
+			if (numOfLegs == 1){
+				isSecondTurn = !isSecondTurn;
+			}
+			if (action != null) {
+				return action;
+			}
+		}
+		return new DoNothingAction();
 	}
 	
 
@@ -90,7 +103,6 @@ public class Zombie extends ZombieActor {
 		}
 		return new IntrinsicWeapon(10, "punches");
 	}
-
 
 	/**
 	 * If a Zombie can attack, it will.  If not, it will chase any human within 10 spaces.  
@@ -109,10 +121,19 @@ public class Zombie extends ZombieActor {
 			display.println(name + " SAYS BRAINSSSSS!!!!");
 		}
 		this.checkStatus(map);
-		for (Behaviour behaviour : behaviours) {
-			Action action = behaviour.getAction(this, map);
-			if (action != null)
-				return action;
+		if (numOfLegs == 2){
+			return returnAction(behaviours, map);
+		}
+		if (numOfLegs == 1){
+			if (!isSecondTurn){
+				return returnAction(behaviours, map);
+			}
+			else{
+				return returnAction(behavioursWithoutLegs, map);
+			}
+		}
+		if (numOfLegs == 0) {
+			return returnAction(behavioursWithoutLegs, map);
 		}
 		return new DoNothingAction();	
 	}
