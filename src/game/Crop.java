@@ -19,7 +19,7 @@ public class Crop extends Item {
             displayChar = 'C';
             removeCapability(ItemCapability.CAN_BE_FERTILIZED);
             addCapability(ItemCapability.CAN_BE_HARVESTED);
-
+            allowableActions.add(new HarvestAction(this, location));
         }
     }
 
