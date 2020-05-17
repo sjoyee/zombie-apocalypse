@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import game.behaviours.FertilizeBehaviour;
 import game.behaviours.HarvestBehaviour;
 import game.behaviours.SowBehaviour;
+import game.behaviours.WanderBehaviour;
 
 public class Farmer extends Human{
     private Behaviour[] behaviours =

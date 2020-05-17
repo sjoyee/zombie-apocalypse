@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import game.behaviours.EatBehaviour;
+import game.behaviours.WanderBehaviour;
 
 /**
  * Class representing an ordinary human.
