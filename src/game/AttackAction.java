@@ -71,11 +71,12 @@ public class AttackAction extends Action {
 //				Collections.shuffle(myLimbs);
 				if(myLimbs.size()>0) {
 					int index= rand.nextInt(myLimbs.size());
+					char x = myLimbs.get(index).getDisplayChar();
 					char limbs = myLimbs.get(index).getDisplayChar();
 					target.removeItemFromInventory(myLimbs.get(index));
 					SimpleClub s = new SimpleClub(limbs);
 					s.getDropAction().execute(target, map);
-					result += System.lineSeparator() + "drop a limb";
+					result += System.lineSeparator() + "drop a limb = " + x;
 					}
 				}
 			}
