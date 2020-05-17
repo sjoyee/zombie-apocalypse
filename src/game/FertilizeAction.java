@@ -22,7 +22,7 @@ public class FertilizeAction extends Action {
             unripeCrop.setAge(currentTurn + increase);
         }
         else{
-            unripeCrop.setAge(ripeAge);
+            unripeCrop.setAge(ripeAge - 1);
         }
         return actor + " fertilizes " + unripeCrop;
     }
