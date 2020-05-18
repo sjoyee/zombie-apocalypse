@@ -41,6 +41,10 @@ public class Zombie extends ZombieActor {
 		numOfLegs = 0;
 		PROB = 0.5;
 		isSecondTurn = false;
+		this.setLimbsForZombies();
+
+	}
+	private void setLimbsForZombies() {
 		this.addItemToInventory(new Limbs("arms",'A'));
 		this.addItemToInventory(new Limbs("arms",'A'));
 		this.addItemToInventory(new Limbs("legs",'l'));
