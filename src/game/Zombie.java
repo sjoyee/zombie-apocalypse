@@ -32,14 +32,14 @@ public class Zombie extends ZombieActor {
 	private Behaviour[] behavioursWithoutLegs = {new AttackBehaviour(ZombieCapability.ALIVE), new PickUpWeaponBehaviour()};
 	private int numOfArms;
 	private int numOfLegs;
-	private double PROB;
+	private double probability;
 	private boolean isSecondTurn;
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
 		numOfArms = 0;
 		numOfLegs = 0;
-		PROB = 0.5;
+		probability = 0.5;
 		isSecondTurn = false;
 		this.setLimbsForZombies();
 
@@ -65,19 +65,19 @@ public class Zombie extends ZombieActor {
 		numOfLegs = newNumOfLegs;
 		}
 		if (numOfArms == 0){
-			PROB = 1;
-			dropWeapons(name, map);
+			probability = 1;
+			dropAllWeapons(name, map);
 		}
 		if(numOfArms == 1) {
-			PROB = 0.75;
+			probability = 0.75;
 			Random rand = new Random();
 			if (rand.nextBoolean()) {
-				dropWeapons(name, map);
+				dropAllWeapons(name, map);
 			}
 		}
 	}
 
-	private void dropWeapons(String nameOfActor, GameMap map){
+	private void dropAllWeapons(String nameOfActor, GameMap map){  // can be added to zombieactor class for extendability and prevent downcasting
 		Actions dropActions = new Actions();
 		for (Item item : this.getInventory()) {
 			if(item.asWeapon()!= null) {
@@ -108,7 +108,7 @@ public class Zombie extends ZombieActor {
 	@Override
 	public IntrinsicWeapon getIntrinsicWeapon() {  //Changes for Zombie Attacks
 		double chances = Math.random();
-		if (chances <= PROB) {
+		if (chances <= probability) {
 			return new IntrinsicWeapon(20,"bites");
 		}
 		return new IntrinsicWeapon(10, "punches");
