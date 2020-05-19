@@ -66,29 +66,14 @@ public class Zombie extends ZombieActor {
 		}
 		if (numOfArms == 0){
 			probability = 1;
-			dropAllWeapons(name, map);
+			dropAllWeapons( map);
 		}
 		if(numOfArms == 1) {
 			probability = 0.75;
 			Random rand = new Random();
 			if (rand.nextBoolean()) {
-				dropAllWeapons(name, map);
+				dropAllWeapons(map);
 			}
-		}
-	}
-
-	private void dropAllWeapons(String nameOfActor, GameMap map){  // can be added to zombieactor class for extendability and prevent downcasting
-		Actions dropActions = new Actions();
-		for (Item item : this.getInventory()) {
-			if(item.asWeapon()!= null) {
-				dropActions.add(item.getDropAction());
-			}
-		}
-		for (Action drop : dropActions) {
-			drop.execute(this, map);
-		}
-		if (dropActions.size() != 0) {
-			System.out.println(nameOfActor + " has drop all weapons");
 		}
 	}
 

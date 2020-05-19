@@ -1,8 +1,10 @@
 package game;
 
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 import game.actions.AttackAction;
 
 /**
@@ -16,6 +18,21 @@ public abstract class ZombieActor extends Actor {
 		super(name, displayChar, hitPoints);
 		
 		addCapability(team);
+	}
+	
+	protected void dropAllWeapons( GameMap map){  // can be added to zombieactor class for extendability and prevent downcasting
+		Actions dropActions = new Actions();
+		for (Item item : this.getInventory()) {
+			if(item.asWeapon()!= null) {
+				dropActions.add(item.getDropAction());
+			}
+		}
+		for (Action drop : dropActions) {
+			drop.execute(this, map);
+		}
+		if (dropActions.size() != 0) {
+			System.out.println(name + " has drop all weapons");
+		}
 	}
 	
 	@Override
