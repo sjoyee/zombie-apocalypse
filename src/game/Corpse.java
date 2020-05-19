@@ -5,23 +5,25 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import java.util.Random;
 
-public class Corpse extends Item {
+public class Corpse extends PortableItem {
 
     private int turn;
     private Actor initialActor;
     private Random random = new Random();
 
     public Corpse(String name, Actor initialActor) {
-        super(name, '%', false);
+        super(name, '%');
         this.initialActor = initialActor;
     }
 
     @Override
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
-
-        turn ++;
-
+        for (Item item: currentLocation.getItems()){
+            if (item == this){
+                turn ++;
+            }
+        }
         if(!initialActor.hasCapability(ZombieCapability.UNDEAD)){
             int lo, hi, range;
             lo = 5;
