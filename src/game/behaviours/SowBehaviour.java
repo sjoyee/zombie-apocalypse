@@ -14,12 +14,12 @@ public class SowBehaviour implements Behaviour {
 
     @Override
     public Action getAction(Actor actor, GameMap map) {
-        List<Exit> adjacentLocationList = map.locationOf(actor).getExits();
-        for (Exit adjacentLocation: adjacentLocationList){
-            if (adjacentLocation.getDestination().getGround().hasCapability(GroundCapability.SOW)){
-                if(adjacentLocation.getDestination().getItems().isEmpty()){
-                    double chances = Math.random();
-                    if (chances <= 0.33){
+        double chances = Math.random();
+        if (chances <= 0.33){
+            List<Exit> adjacentLocationList = map.locationOf(actor).getExits();
+            for (Exit adjacentLocation: adjacentLocationList){
+                if (adjacentLocation.getDestination().getGround().hasCapability(GroundCapability.SOW)){
+                    if(adjacentLocation.getDestination().getItems().isEmpty()){
                         return new SowAction(adjacentLocation.getDestination());
                     }
                 }
