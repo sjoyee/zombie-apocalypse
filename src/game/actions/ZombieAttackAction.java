@@ -30,14 +30,14 @@ public class ZombieAttackAction extends AttackAction{
 			return miss;
 		}
 		if(weapon instanceof IntrinsicWeapon) {
-			if(weapon.verb() == "bites" && prob < 0.75) {
+			if(weapon.verb().equals("bites") && prob < 0.75) {
 				return miss;
 			}
-			else if(weapon.verb() == "punches" && prob < 0.25) {
+			else if(weapon.verb().equals("punches") && prob < 0.25) {
 				return miss;
 			}
 		}
-		if(weapon.verb()=="bites") {
+		if(weapon.verb().equals("bites")) {
 			actor.heal(5);
 			result += actor +" heals for 5 hitpoints" + System.lineSeparator();
 		}
