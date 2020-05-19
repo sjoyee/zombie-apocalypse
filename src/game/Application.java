@@ -66,9 +66,17 @@ public class Application {
 		}
 
 		// Place some random farmers
-		gameMap.at(5,10).addActor(new Farmer("Farmer1"));
-		gameMap.at(15,20).addActor(new Farmer("Farmer2"));
-		gameMap.at(30,10).addActor(new Farmer("Farmer3"));
+		String[] farmers = {"Farmer Ada", "Farmer Bob"};
+		for (String name: farmers){
+			do {
+				x = (int) Math.floor(Math.random() * 20.0 + 30.0);
+				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
+			}
+			while (gameMap.at(x, y).containsAnActor());
+			gameMap.at(x,  y).addActor(new Farmer(name));
+		}
+		gameMap.at(10, 15).addActor(new Farmer("Farmer Chris"));
+		gameMap.at(65, 5).addActor(new Farmer("Farmer Dora"));
 
 		// place a simple weapon
 		gameMap.at(74, 20).addItem(new Plank());
