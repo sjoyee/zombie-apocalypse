@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
 import edu.monash.fit2099.engine.WeaponItem;
-import game.PortableItem;
+import game.Corpse;
 
 public class ZombieAttackAction extends AttackAction{
 	
@@ -47,15 +47,15 @@ public class ZombieAttackAction extends AttackAction{
 
 		target.hurt(damage);
 		if (!target.isConscious()) {
-			Item corpse = new PortableItem("dead " + target, '%');
+			Corpse corpse = new Corpse("dead " + target);
 			map.locationOf(target).addItem(corpse);
-			
+
 			Actions dropActions = new Actions();
 			for (Item item : target.getInventory()) {
 				dropActions.add(item.getDropAction());
 			}
 			for (Action drop : dropActions)	{
-				drop.execute(target, map);	
+				drop.execute(target, map);
 			}
 			map.removeActor(target);
 			result += System.lineSeparator() + target + " is killed.";
