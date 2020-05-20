@@ -37,36 +37,19 @@ public class Zombie extends ZombieActor {
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
-		numOfArms = 0;
-		numOfLegs = 0;
+		numOfArms = 2;
+		numOfLegs = 2;
 		probability = 0.5;
 		isSecondTurn = false;
-		this.setLimbsForZombies();
+
 
 	}
-	private void setLimbsForZombies() {
-		this.addItemToInventory(new Limbs("arms",'A'));
-		this.addItemToInventory(new Limbs("arms",'A'));
-		this.addItemToInventory(new Limbs("legs",'l'));
-		this.addItemToInventory(new Limbs("legs",'l'));
-	}
+
 	
 	public void checkStatus(GameMap map) {
-		int newNumOfArms=0;
-		int newNumOfLegs=0;
-		for(Item item : this.getInventory()) {
-			if (item.hasCapability(LimbsCapability.ARM)) {
-				 newNumOfArms++;
-			}
-			else if (item.hasCapability(LimbsCapability.LEG)) {
-				newNumOfLegs++;
-			}
-		numOfArms = newNumOfArms;
-		numOfLegs = newNumOfLegs;
-		}
 		if (numOfArms == 0){
 			probability = 1;
-			dropAllWeapons( map);
+			dropAllWeapons(map);
 		}
 		if(numOfArms == 1) {
 			probability = 0.75;
@@ -75,6 +58,25 @@ public class Zombie extends ZombieActor {
 				dropAllWeapons(map);
 			}
 		}
+	}
+	
+	@Override
+	public void hurt(int damage) {
+		super.hurt(damage);
+		double x = Math.random();
+		if(x < 1 && numOfArms > 0 || numOfLegs > 0) {
+			Random rand = new Random();
+			if(rand.nextBoolean()){
+				numOfLegs -=1;
+				this.addCapability(LimbsCapability.LEG);
+				System.out.println("Drop Leg");
+				}
+			else {
+				numOfArms -=1;
+				this.addCapability(LimbsCapability.ARM);
+				System.out.println("Drop Arm");
+				}
+			}
 	}
 
 	private Action returnAction(Behaviour[] behaviourArray, GameMap map){
@@ -114,6 +116,14 @@ public class Zombie extends ZombieActor {
 		final double PROB = 0.1;
 		if(chances <= PROB) {
 			display.println(name + " SAYS BRAINSSSSS!!!!");
+		}
+		if(this.hasCapability(LimbsCapability.ARM)){
+			this.removeCapability(LimbsCapability.ARM);
+			map.locationOf(this).addItem(new SimpleClub('A'));
+		}
+		else if(this.hasCapability((LimbsCapability.LEG))) {
+			this.removeCapability(LimbsCapability.LEG);
+			map.locationOf(this).addItem(new SimpleClub('L'));
 		}
 		this.checkStatus(map);
 		if (numOfLegs == 2){
