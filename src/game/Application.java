@@ -50,7 +50,7 @@ public class Application {
 		world.addGameMap(gameMap);
 		
 		Actor player = new Player("Player", '@', 100);
-		world.addPlayer(player, gameMap.at(42, 15));
+		world.addPlayer(player, gameMap.at(38, 15));
 		
 	    // Place some random humans
 		String[] humans = {"Carlton", "May", "Vicente", "Andrea", "Wendy",
@@ -79,13 +79,13 @@ public class Application {
 		gameMap.at(65, 5).addActor(new Farmer("Farmer Dora"));
 
 		// place a simple weapon
-		gameMap.at(74, 20).addItem(new Plank());
+		gameMap.at(60, 20).addItem(new Plank());
 		
 		// FIXME: Add more zombies!
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));
 		gameMap.at(30,  18).addActor(new Zombie("Boo"));
 		gameMap.at(10,  4).addActor(new Zombie("Uuuurgh"));
-		gameMap.at(50, 18).addActor(new Zombie("Mortalis"));
+		gameMap.at(60, 20).addActor(new Zombie("Mortalis"));
 		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
 		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));	
 		world.run();

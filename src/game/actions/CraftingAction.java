@@ -24,7 +24,7 @@ public class CraftingAction extends Action{
 		String result = "";
 		if(executable) {
 			for(Item item  : actor.getInventory()) {
-				if(item.getDisplayChar() == 'l') {
+				if(item.getDisplayChar() == 'L') {
 				actor.removeItemFromInventory(item);
 				ZombieMace newMace = new ZombieMace();
 				actor.addItemToInventory(newMace);

@@ -63,27 +63,6 @@ public class AttackAction extends Action {
 			
 			result += System.lineSeparator() + target + " is killed.";
 		}
-		else if (target.isConscious() && target.hasCapability(ZombieCapability.UNDEAD)){   //for dropping limbs
-			double chances = Math.random();
-			if(chances <= 1) {
-				ArrayList<Item> myLimbs = new ArrayList<>();
-				for(Item item : target.getInventory()) {
-					if (item.hasCapability(LimbsCapability.ARM) || item.hasCapability(LimbsCapability.LEG)) {
-						myLimbs.add(item);
-					}
-				}
-//				Collections.shuffle(myLimbs);
-				if(myLimbs.size()>0) {
-					int index= rand.nextInt(myLimbs.size());
-					char x = myLimbs.get(index).getDisplayChar();
-					char limbs = myLimbs.get(index).getDisplayChar();
-					target.removeItemFromInventory(myLimbs.get(index));
-					SimpleClub s = new SimpleClub(limbs);
-					s.getDropAction().execute(target, map);
-					result += System.lineSeparator() + target + " drop a limb = " + x;
-					}
-				}
-			}
 
 		return result;
 	}
