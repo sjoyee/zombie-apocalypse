@@ -132,6 +132,6 @@ public class Zombie extends ZombieActor {
 		if (numOfLegs == 0) {
 			return returnAction(behavioursWithoutLegs, map);
 		}
-		return new DoNothingAction();	
+		return new DoNothingAction();
 	}
 }
