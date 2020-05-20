@@ -11,4 +11,9 @@ public class Dirt extends Ground {
 		super('.');
 		addCapability(GroundCapability.CAN_BE_SOWED);
 	}
+
+	@Override
+	public void speedUpAge() {
+
+	}
 }
