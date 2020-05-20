@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Menu;
+import game.actions.HarvestAction;
 
 /**
  * Class representing the Player.
@@ -29,6 +30,9 @@ public class Player extends Human {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+		if (map.locationOf(this).getGround().hasCapability(GroundCapability.CAN_BE_HARVESTED)){
+			actions.add(new HarvestAction(map.locationOf(this)));
+		}
 		return menu.showMenu(this, actions, display);
 	}
 }
