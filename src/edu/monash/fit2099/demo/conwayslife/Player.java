@@ -34,6 +34,11 @@ public class Player extends Actor {
 		return menu.showMenu(this, actions, display);
 	}
 
+	@Override
+	public boolean isDamaged() {
+		return false;
+	}
+
 	private class SleepAction extends Action {
 
 		private int sleepTime = 200;

@@ -34,7 +34,12 @@ public abstract class ZombieActor extends Actor {
 			System.out.println(name + " has drop all weapons");
 		}
 	}
-	
+
+	@Override
+	public boolean isDamaged() {
+		return hitPoints < maxHitPoints;
+	}
+
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions list = super.getAllowableActions(otherActor, direction, map);

@@ -13,7 +13,7 @@ public class EatBehaviour implements Behaviour {
     @Override
     public Action getAction(Actor actor, GameMap map) {
         for (Item item: map.locationOf(actor).getItems()){
-            if(item.hasCapability(ItemCapability.EDIBLE)){
+            if(actor.isDamaged() && item.hasCapability(ItemCapability.EDIBLE)){
                 return new EatAction(item);
             }
         }
