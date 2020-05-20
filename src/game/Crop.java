@@ -1,15 +1,19 @@
 package game;
 
-import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Actions;
+import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 import game.actions.HarvestAction;
 
-public class Crop extends Item {
+public class Crop extends Ground {
     private int age;
+    private boolean hasRipen;
 
     public Crop() {
-        super("crop", 'c',false);
-        addCapability(ItemCapability.CAN_BE_FERTILIZED);
+        super('c');
+        hasRipen = false;
+        addCapability(GroundCapability.CAN_BE_FERTILIZED);
     }
 
     @Override
@@ -18,10 +22,19 @@ public class Crop extends Item {
         age ++;
         if (age == 20){
             displayChar = 'C';
-            removeCapability(ItemCapability.CAN_BE_FERTILIZED);
-            addCapability(ItemCapability.CAN_BE_HARVESTED);
-            allowableActions.add(new HarvestAction(this, location));
+            removeCapability(GroundCapability.CAN_BE_FERTILIZED);
+            addCapability(GroundCapability.CAN_BE_HARVESTED);
+            hasRipen = true;
         }
+    }
+    @Override
+    public Actions allowableActions(Actor actor, Location location, String direction) {
+        if(hasRipen) {
+            Actions actions = new Actions();
+            actions.add(new HarvestAction(location));
+            return actions;
+        }
+        return new Actions();
     }
 
     public int getAge() {

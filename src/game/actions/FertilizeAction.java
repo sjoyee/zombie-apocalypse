@@ -25,7 +25,7 @@ public class FertilizeAction extends Action {
         else{
             unripeCrop.setAge(ripeAge - 1);
         }
-        return actor + " fertilizes " + unripeCrop;
+        return menuDescription(actor);
     }
 
     @Override

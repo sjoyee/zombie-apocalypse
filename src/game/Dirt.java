@@ -9,6 +9,6 @@ public class Dirt extends Ground {
 
 	public Dirt() {
 		super('.');
-		addCapability(GroundCapability.SOW);
+		addCapability(GroundCapability.CAN_BE_SOWED);
 	}
 }

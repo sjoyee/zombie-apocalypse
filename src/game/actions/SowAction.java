@@ -16,8 +16,8 @@ public class SowAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         Crop crop = new Crop();
-        sowLocation.addItem(crop);
-        return actor + " successfully sows a " + crop;
+        sowLocation.setGround(crop);
+        return actor + " successfully sows a crop";
     }
 
     @Override
