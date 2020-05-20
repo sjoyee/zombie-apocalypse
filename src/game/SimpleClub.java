@@ -7,8 +7,6 @@ public class SimpleClub extends WeaponItem{
 
 	public SimpleClub(char display) {
 		super("SimpleClub", display, 20, "SimpleClub whacks");
-		allowableActions.add( new CraftingAction());
-		//this.addCapability(Craftable.UNPICKABLE);
 		this.addCapability(ItemCapability.CRAFTABLE);
 //		setLimbsCapability(displayChar);
 	}

@@ -4,7 +4,9 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Menu;
+import game.actions.CraftingAction;
 import game.actions.HarvestAction;
 
 /**
@@ -32,6 +34,11 @@ public class Player extends Human {
 			return lastAction.getNextAction();
 		if (map.locationOf(this).getGround().hasCapability(GroundCapability.CAN_BE_HARVESTED)){
 			actions.add(new HarvestAction(map.locationOf(this)));
+		}
+		for(Item item : this.getInventory()) {
+			if(item.hasCapability(ItemCapability.CRAFTABLE)) {
+				actions.add(new CraftingAction());
+			}
 		}
 		return menu.showMenu(this, actions, display);
 	}
