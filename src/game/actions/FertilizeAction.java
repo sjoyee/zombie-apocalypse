@@ -30,6 +30,6 @@ public class FertilizeAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " fertilizes " + unripeCrop ;
+        return actor + " fertilizes unripe crop";
     }
 }
