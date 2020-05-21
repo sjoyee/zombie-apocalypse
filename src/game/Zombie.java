@@ -30,23 +30,17 @@ public class Zombie extends ZombieActor {
 			new WanderBehaviour()
 	};
 	private Behaviour[] behavioursWithoutLegs = {new AttackBehaviour(ZombieCapability.ALIVE), new PickUpWeaponBehaviour()};
-	private int numOfArms;
-	private int numOfLegs;
-	private double probability;
-	private boolean isSecondTurn;
+	private int numOfArms = 2;
+	private int numOfLegs = 2;
+	private double probability = 0.5;
+	private boolean isSecondTurn = false;
 
 	public Zombie(String name) {
 		super(name, 'Z', 100, ZombieCapability.UNDEAD);
-		numOfArms = 2;
-		numOfLegs = 2;
-		probability = 0.5;
-		isSecondTurn = false;
-
-
 	}
 
 	
-	public void checkStatus(GameMap map) {
+	private void checkStatus(GameMap map) {
 		if (numOfArms == 0){
 			probability = 1;
 			dropAllWeapons(map);
