@@ -9,11 +9,12 @@ public class Dirt extends Ground {
 
 	/**
 	 * Constructor.
-	 * Create a Dirt object in which a crop can be sowed on it.
+	 * Create a Dirt object using a char that specifies the display character of Dirt and is capable of being
+	 * sowed on it.
 	 */
 	public Dirt() {
 		super('.');
-		addCapability(GroundCapability.CAN_BE_SOWED);
+		addCapability(GroundCapability.CAN_BE_SOWED_ON);
 	}
 
 	/**
