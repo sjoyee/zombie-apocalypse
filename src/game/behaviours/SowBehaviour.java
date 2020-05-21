@@ -16,7 +16,7 @@ public class SowBehaviour implements Behaviour {
         double chances = Math.random();
         if (chances <= 0.33){
             for (Exit adjacentLocation: map.locationOf(actor).getExits()){
-                if (adjacentLocation.getDestination().getGround().hasCapability(GroundCapability.CAN_BE_SOWED)){
+                if (adjacentLocation.getDestination().getGround().hasCapability(GroundCapability.CAN_BE_SOWED_ON)){
                     if(adjacentLocation.getDestination().getItems().isEmpty()){
                         return new SowAction(adjacentLocation.getDestination());
                     }
