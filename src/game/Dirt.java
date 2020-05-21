@@ -13,7 +13,7 @@ public class Dirt extends Ground {
 	 */
 	public Dirt() {
 		super('.');
-		addCapability(GroundCapability.CAN_BE_SOWED_ON);
+		addCapability(GroundCapability.CAN_BE_SOWED);
 	}
 
 	/**
