@@ -64,17 +64,17 @@ public class Zombie extends ZombieActor {
 	public void hurt(int damage) {
 		super.hurt(damage);
 		double x = Math.random();
-		if(x < 1 && numOfArms > 0 || numOfLegs > 0) {
+		if(x < 1) {
 			Random rand = new Random();
-			if(rand.nextBoolean()){
+			if(rand.nextBoolean() && numOfLegs > 0){
 				numOfLegs -=1;
 				this.addCapability(LimbsCapability.LEG);
-				System.out.println("Drop Leg");
+				System.out.println(this + " drop Leg");
 				}
-			else {
+			else if(numOfArms > 0){
 				numOfArms -=1;
 				this.addCapability(LimbsCapability.ARM);
-				System.out.println("Drop Arm");
+				System.out.println(this + " drop Arm ");
 				}
 			}
 	}
@@ -82,7 +82,9 @@ public class Zombie extends ZombieActor {
 	private Action returnAction(Behaviour[] behaviourArray, GameMap map){
 		for (Behaviour behaviour : behaviourArray) {
 			Action action = behaviour.getAction(this, map);
-
+			if (numOfArms == 0 && behaviour instanceof PickUpWeaponBehaviour){
+               action = action.getNextAction();
+            }
 			if (action != null) {
 				return action;
 			}
