@@ -53,7 +53,7 @@ public class Crop extends Ground {
     }
 
     /**
-     * Allow Crop to experience the passage of time and ripe when {@code age} reaches the {@link #RIPE_AGE}.
+     * Allow Crop to experience the passage of time and ripe when {@code age} reaches the {@code RIPE_AGE}.
      * When Crop ripes, a different char will be assigned to {@code displayChar} to represent the ripe Crop,
      * {@code isRipe} is assigned to be true, and has the capability {@link GroundCapability#CAN_BE_HARVESTED}
      * instead of {@link GroundCapability#CAN_BE_FERTILIZED}.
