@@ -27,6 +27,18 @@ public class Player extends Human {
 		super(name, displayChar, hitPoints);
 	}
 
+	/**
+	 * Select and return an action to perform on the current turn according to the displayed description of Action on the menu.
+	 * A new {@link HarvestAction} and a new {@link CraftingAction} is added to {@code actions} for the player to harvest
+	 * ripe crop and craft weapon if conditions are met.
+	 *
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn.
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 *
+	 * @return the Action to be performed
+	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// Handle multi-turn Actions
