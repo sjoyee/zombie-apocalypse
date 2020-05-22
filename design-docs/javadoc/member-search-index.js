@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"edu.monash.fit2099.interfaces","c":"ActorInterface","l":"isDamaged()"},{"p":"edu.monash.fit2099.interfaces","c":"GroundInterface","l":"speedUpAge()"}]
