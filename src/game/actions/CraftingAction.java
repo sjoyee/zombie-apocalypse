@@ -8,11 +8,19 @@ import game.ItemCapability;
 import game.ZombieClub;
 import game.ZombieMace;
 
+/** Special Action that allows actor to craft a weapon
+ * 
+ * @author Lua Shi Liang
+ *
+ */
 public class CraftingAction extends Action{
-	
-	public CraftingAction() {
-	}
 
+	/** Craft a Weapon
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * 
+     * @return a string of description on this action for display
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		boolean executable=false;
@@ -28,15 +36,16 @@ public class CraftingAction extends Action{
 				actor.removeItemFromInventory(item);
 				ZombieMace newMace = new ZombieMace();
 				actor.addItemToInventory(newMace);
-				result += "A mace is crafted";
+				result += "A Mace ";
 			}
 				else if(item.getDisplayChar() == 'A') {
 					actor.removeItemFromInventory(item);
 					ZombieClub newClub = new ZombieClub();
 					actor.addItemToInventory(newClub);
-					result += "A club is crafted";
+					result += "A Club ";
 					}
 				}
+			result += "is crafted";
 		}
 		else if(!executable) {
 			result+="No item is crafted";
@@ -44,10 +53,16 @@ public class CraftingAction extends Action{
 		return result;
 	}
 
+    /**
+     * Return a string of description on this action for display.
+     *
+     * @param actor The actor performing the action.
+     * @return a string of description on this action for display
+     */
 	@Override
 	public String menuDescription(Actor actor) {
 		
-		return actor + " can craft limb when holding it. " ;
+		return actor + " can craft item. " ;
 	}
 
 }
