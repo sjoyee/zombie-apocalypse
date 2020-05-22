@@ -13,14 +13,15 @@ import game.actions.HarvestAction;
  */
 public class Crop extends Ground {
     /**
-     * The age of the Crop which increases with turn.
+     * An integer that specify the age of the Crop which increases with turn, and initialised to be {@code 0}.
      */
-    private int age;
+    private int age = 0;
 
     /**
-     * A boolean variable to check and determine whether the Crop is ripe.
+     * A boolean variable to check and determine whether the Crop is ripe, and initialised to be {@code false},
+     * indicating the Crop is initially unripe.
      */
-    private boolean isRipe;
+    private boolean isRipe = false;
 
     /**
      * A constant variable which stores the age when the Crop ripes.
@@ -28,19 +29,17 @@ public class Crop extends Ground {
     private final int RIPE_AGE = 20;
 
     /**
-     * Constructor.
-     * Create a Crop object in which its age is 0, is not ripe initially and has the capability of being fertilized.
+     * Create a Crop object using a char that specifies its display character for Crop, and adding the capability
+     * {@link GroundCapability#CAN_BE_FERTILIZED}.
      *
      */
     public Crop() {
         super('c');
-        age = 0;
-        isRipe = false;
         addCapability(GroundCapability.CAN_BE_FERTILIZED);
     }
 
     /**
-     * Sets the age of the Crop.
+     * Set the age of the Crop.
      * @param age an integer that specifies the age of the Crop.
      */
     private void setAge(int age) {
@@ -48,9 +47,10 @@ public class Crop extends Ground {
     }
 
     /**
-     * Allow Crop to experience the passage of time. When it reaches the age to ripe, the character which represents the
-     * Crop and its capability to be fertilized will be changed to be displayed as ripe crop and have the capability to
-     * be harvested.
+     * Allow Crop to experience the passage of time and ripe when {@code age} reaches the {@link #RIPE_AGE}.
+     * When Crop ripes, a different char will be assigned to {@code displayChar} to represent the ripe Crop,
+     * {@code isRipe} is assigned to be true, and has the capability {@link GroundCapability#CAN_BE_HARVESTED}
+     * instead of {@link GroundCapability#CAN_BE_FERTILIZED}.
      *
      * @param location The location of the Ground
      */

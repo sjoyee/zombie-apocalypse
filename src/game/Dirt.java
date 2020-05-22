@@ -8,9 +8,8 @@ import edu.monash.fit2099.engine.Ground;
 public class Dirt extends Ground {
 
 	/**
-	 * Constructor.
-	 * Create a Dirt object using a char that specifies the display character of Dirt and is capable of being
-	 * sowed on it.
+	 * Create a Dirt object using a char that specifies the display character of Dirt, and adding the capability
+	 * {@link GroundCapability#CAN_BE_SOWED_ON}.
 	 */
 	public Dirt() {
 		super('.');
