@@ -17,7 +17,7 @@ import game.ZombieMace;
  */
 public class CraftingAction extends Action{
 
-	/** Craft a Weapon
+	/** Craft Weapons
 	 * 
 	 * if it is an arm, craft it into a ZombieClub
 	 * if it is a leg, craft it into a ZombieMace
