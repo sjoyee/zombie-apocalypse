@@ -40,9 +40,15 @@ public class Crop extends Ground {
 
     /**
      * Set the age of the Crop.
+     *
      * @param age an integer that specifies the age of the Crop.
+     * @throws Exception if age is negative.
      */
-    private void setAge(int age) {
+
+    private void setAge(int age) throws Exception {
+        if (age < 0){
+            throw new Exception("age must not be negative");
+        }
         this.age = age;
     }
 
@@ -93,11 +99,22 @@ public class Crop extends Ground {
     public void speedUpAge() {
         int increase;
         increase = 10;
-        if (age < (RIPE_AGE - increase)){
-            setAge(age + increase);
+
+        if (age < (RIPE_AGE - increase)) {
+            try {
+                setAge(age + increase);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         else{
-            setAge(RIPE_AGE - 1);
+            try {
+                setAge(RIPE_AGE - 1);
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }
