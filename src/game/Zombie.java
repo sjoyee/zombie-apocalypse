@@ -40,7 +40,7 @@ public class Zombie extends ZombieActor {
 	}
 
 	
-	private void checkStatus(GameMap map) {
+	private void checkArmStatus(GameMap map) {
 		if (numOfArms == 0){
 			probability = 1;
 			dropAllWeapons(map);
@@ -121,7 +121,7 @@ public class Zombie extends ZombieActor {
 			this.removeCapability(LimbsCapability.LEG);
 			map.locationOf(this).addItem(new SimpleClub('L'));
 		}
-		this.checkStatus(map);
+		this.checkArmStatus(map);
 		if (numOfLegs == 2){
 			return returnAction(behaviours, map);
 		}
