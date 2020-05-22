@@ -16,9 +16,6 @@ public class SimpleClub extends WeaponItem{
 	 */
 	public SimpleClub(char display){
 		super("SimpleClub", display, 20, "SimpleClub whacks");
-//		if(display != 'A' || display != 'L') {
-//			throw new Exception("display must be either A or L");
-//		}
 		this.addCapability(ItemCapability.CRAFTABLE);
 	}
 
