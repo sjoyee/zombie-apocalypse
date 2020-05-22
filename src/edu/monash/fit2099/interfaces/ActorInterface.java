@@ -6,5 +6,9 @@ package edu.monash.fit2099.interfaces;
  */
 
 public interface ActorInterface {
+    /**
+     * Check whether a type actor is damaged.
+     * @return the boolean value that whether the actor is damaged
+     */
     boolean isDamaged();
 }

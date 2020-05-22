@@ -6,5 +6,8 @@ package edu.monash.fit2099.interfaces;
  */
 
 public interface GroundInterface {
+    /**
+     * Allow a type of Ground to speed up its age.
+     */
     void speedUpAge();
 }
