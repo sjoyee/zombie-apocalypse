@@ -16,6 +16,9 @@ import game.behaviours.WanderBehaviour;
  *
  */
 public class Human extends ZombieActor {
+	/**
+	 * An array of type Behaviour which consists of the behaviours of a Human.
+	 */
 	private Behaviour[] behaviours = {new EatBehaviour(), new WanderBehaviour()};
 
 	/**
@@ -39,6 +42,13 @@ public class Human extends ZombieActor {
 		super(name, displayChar, hitPoints, ZombieCapability.ALIVE);
 	}
 
+	/**
+	 * Return an action get from the behaviour in {@code behaviours} array to perform on the current turn if the action
+	 * is not null, else return a {@link DoNothingAction}.
+	 *
+	 * @param map the map containing the Actor
+	 * @return the Action to be performed
+	 */
 	@Override
 	public Action playTurn(Actions actions, Action lastAction, GameMap map, Display display) {
 		// FIXME humans are pretty dumb, maybe they should at least run away from zombies?
