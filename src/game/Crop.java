@@ -45,7 +45,7 @@ public class Crop extends Ground {
      * @throws Exception if age is negative.
      */
 
-    private void setAge(int age) throws Exception {
+    public void setAge(int age) throws Exception {
         if (age < 0){
             throw new Exception("age must not be negative");
         }
