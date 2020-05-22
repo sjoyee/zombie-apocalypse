@@ -12,8 +12,20 @@ import game.actions.HarvestAction;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that generates a HarvestAction if the current Actor is standing on or next to a ripe Crop.
+ *
+ * @author Siang Jo Yee
+ */
 public class HarvestBehaviour implements Behaviour {
 
+    /**
+     * Returns a HarvestAction that allows an Actor who is standing on or next to a ripe Crop to harvest it.
+     *
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return a new HarvestAction object if requirement fulfilled, else null
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         List<Location> locationList = new ArrayList<>();    // collection of current and adjacent locations

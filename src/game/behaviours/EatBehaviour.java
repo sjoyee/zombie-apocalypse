@@ -8,8 +8,20 @@ import game.Behaviour;
 import game.ItemCapability;
 import game.actions.EatAction;
 
+/**
+ * A class that generates an EatAction if the current Actor is damaged and standing on a Food.
+ *
+ * @author Siang Jo Yee
+ */
 public class EatBehaviour implements Behaviour {
 
+    /**
+     * Returns an EatAction that allows an damaged Actor who is standing on a Food to eat.
+     *
+     * @param actor the Actor acting
+     * @param map the GameMap containing the Actor
+     * @return a new EatAction object if requirement fulfilled, else null
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         for (Item item: map.locationOf(actor).getItems()){
