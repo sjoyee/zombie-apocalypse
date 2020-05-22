@@ -24,7 +24,7 @@ public class HarvestBehaviour implements Behaviour {
      *
      * @param actor the Actor acting
      * @param map the GameMap containing the Actor
-     * @return a new HarvestAction object if requirement fulfilled, else null
+     * @return a new HarvestAction object if conditions are met, else null
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {

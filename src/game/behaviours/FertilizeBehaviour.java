@@ -20,7 +20,7 @@ public class FertilizeBehaviour implements Behaviour {
      *
      * @param actor the Actor acting
      * @param map the GameMap containing the Actor
-     * @return a new FertilizeAction object if requirement fulfilled, else null
+     * @return a new FertilizeAction object if conditions are met, else null
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
