@@ -1,5 +1,7 @@
 package game.actions;
 
+import java.util.ArrayList;
+
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
@@ -35,12 +37,18 @@ public class CraftingAction extends Action{
 		}
 		String result = "";
 		if(executable) {
+			ArrayList<Item> limbs = new ArrayList<>();
 			for(Item item  : actor.getInventory()) {
+				if(item.getDisplayChar() == 'L' || item.getDisplayChar() == 'A' ) {
+					limbs.add(item);
+				}
+			}
+			for(Item item  : limbs) {
 				if(item.getDisplayChar() == 'L') {
-				actor.removeItemFromInventory(item);
-				ZombieMace newMace = new ZombieMace();
-				actor.addItemToInventory(newMace);
-				result += "A Mace ";
+					actor.removeItemFromInventory(item);
+					ZombieMace newMace = new ZombieMace();
+					actor.addItemToInventory(newMace);
+					result += "A Mace ";
 			}
 				else if(item.getDisplayChar() == 'A') {
 					actor.removeItemFromInventory(item);
