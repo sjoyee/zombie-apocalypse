@@ -11,13 +11,32 @@ import edu.monash.fit2099.engine.Weapon;
 import edu.monash.fit2099.engine.WeaponItem;
 import game.Corpse;
 
+/**Special Action that allows only Zombie to attack
+ * 
+ * @author Lua Shi Liang
+ *
+ */
 public class ZombieAttackAction extends AttackAction{
 	
+	/** Creates a ZombieAttackaction using a target where it is the actor 
+	 * that it is going to attack
+	 * @param target The actor that is being attack
+	 */
 	public ZombieAttackAction(Actor target) {
 		super(target);
 	}
 	
 
+	/**Attacks the target
+	 * 
+	 * Zombie has higher missing rate for bite attack than punch attack
+	 * if the Zombie lands a bite attack, it heals for 5 hitpoints
+	 * 
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * 
+     * @return a string of description on this action for display
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		String result="";

@@ -16,6 +16,10 @@ import game.ZombieMace;
 public class CraftingAction extends Action{
 
 	/** Craft a Weapon
+	 * 
+	 * if it is an arm, craft it into a ZombieClub
+	 * if it is a leg, craft it into a ZombieMace
+	 * 
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * 
