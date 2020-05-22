@@ -16,6 +16,11 @@ import game.ZombieMace;
  *
  */
 public class CraftingAction extends Action{
+	private Item craftedItem;
+	
+	public CraftingAction(Item newItem) {
+		craftedItem = newItem;
+	}
 
 	/** Craft Weapons
 	 * 
@@ -29,41 +34,58 @@ public class CraftingAction extends Action{
 	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		boolean executable=false;
-		for(Item item  : actor.getInventory()) {
-			if(item.hasCapability(ItemCapability.CRAFTABLE)){
-				executable = true;
-			}
-		}
 		String result = "";
-		if(executable) {
-			ArrayList<Item> limbs = new ArrayList<>();
-			for(Item item  : actor.getInventory()) {
-				if(item.getDisplayChar() == 'L' || item.getDisplayChar() == 'A' ) {
-					limbs.add(item);
-				}
+			if(craftedItem.getDisplayChar() == 'L') {
+				actor.removeItemFromInventory(craftedItem);
+				ZombieMace newMace = new ZombieMace();
+				actor.addItemToInventory(newMace);
+				result += "A Mace ";
 			}
-			for(Item item  : limbs) {
-				if(item.getDisplayChar() == 'L') {
-					actor.removeItemFromInventory(item);
-					ZombieMace newMace = new ZombieMace();
-					actor.addItemToInventory(newMace);
-					result += "A Mace ";
-			}
-				else if(item.getDisplayChar() == 'A') {
-					actor.removeItemFromInventory(item);
+			else if(craftedItem.getDisplayChar() == 'A') {
+					actor.removeItemFromInventory(craftedItem);
 					ZombieClub newClub = new ZombieClub();
 					actor.addItemToInventory(newClub);
 					result += "A Club ";
 					}
-				}
 			result += "is crafted";
-		}
-		else if(!executable) {
-			result+="No item is crafted";
-		}	
-		return result;
-	}
+			return result;
+			}
+			
+//		boolean executable=false;
+//		for(Item item  : actor.getInventory()) {
+//			if(item.hasCapability(ItemCapability.CRAFTABLE)){
+//				executable = true;
+//			}
+//		}
+//		String result = "";
+//		if(executable) {
+//			ArrayList<Item> limbs = new ArrayList<>();
+//			for(Item item  : actor.getInventory()) {
+//				if(item.getDisplayChar() == 'L' || item.getDisplayChar() == 'A' ) {
+//					limbs.add(item);
+//				}
+//			}
+//			for(Item item  : limbs) {
+//				if(item.getDisplayChar() == 'L') {
+//					actor.removeItemFromInventory(item);
+//					ZombieMace newMace = new ZombieMace();
+//					actor.addItemToInventory(newMace);
+//					result += "A Mace ";
+//			}
+//				else if(item.getDisplayChar() == 'A') {
+//					actor.removeItemFromInventory(item);
+//					ZombieClub newClub = new ZombieClub();
+//					actor.addItemToInventory(newClub);
+//					result += "A Club ";
+//					}
+//				}
+//			result += "is crafted";
+//		}
+//		else if(!executable) {
+//			result+="No item is crafted";
+//		}	
+//		return result;
+
 
     /**
      * Return a string of description on this action for display.

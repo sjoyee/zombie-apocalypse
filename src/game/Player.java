@@ -49,7 +49,7 @@ public class Player extends Human {
 		}
 		for(Item item : this.getInventory()) {
 			if(item.hasCapability(ItemCapability.CRAFTABLE)) {
-				actions.add(new CraftingAction());
+				actions.add(new CraftingAction(item));
 			}
 		}
 		return menu.showMenu(this, actions, display);
