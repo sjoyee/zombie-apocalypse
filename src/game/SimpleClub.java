@@ -10,7 +10,8 @@ import game.actions.CraftingAction;
  */
 public class SimpleClub extends WeaponItem{
 
-	/** Create a SimpleClub using a char that specifies its display character for SimpleClub, and adding the capability
+	/** Create a SimpleClub using a char that specifies its display character for SimpleClub, and adding a capability craftable
+	 * Name, damage and verb of SimpleClub are default values
 	 * @param display the character to use to represent this item if it is on the ground
 	 */
 	public SimpleClub(char display){
