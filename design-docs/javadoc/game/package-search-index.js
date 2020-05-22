@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"edu.monash.fit2099.interfaces"},{"l":"game"},{"l":"game.actions"},{"l":"game.behaviours"}]
