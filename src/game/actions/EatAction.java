@@ -42,10 +42,13 @@ public class EatAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         actor.heal(HEAL_POINTS);
-        actor.removeItemFromInventory(food);
+        if (actor.getInventory().contains(food)){
+            actor.removeItemFromInventory(food);
+        }
         map.locationOf(actor).removeItem(food);
         return menuDescription(actor);
     }
+
 
     /**
      * Return a string of description on this action for display.
