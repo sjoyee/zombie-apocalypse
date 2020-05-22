@@ -20,7 +20,10 @@ public abstract class ZombieActor extends Actor {
 		addCapability(team);
 	}
 	
-	protected void dropAllWeapons( GameMap map){  // can be added to zombieactor class for extendability and prevent downcasting
+	/** Drop all the weapons from the inventory of the ZombieActor
+	 * @param map the map where the current ZombieActor is
+	 */
+	protected void dropAllWeapons( GameMap map){  
 		Actions dropActions = new Actions();
 		for (Item item : this.getInventory()) {
 			if(item.asWeapon()!= null) {
@@ -35,6 +38,9 @@ public abstract class ZombieActor extends Actor {
 		}
 	}
 
+	/**
+	 * Checks if the ZombieActor is damaged
+	 */
 	@Override
 	public boolean isDamaged() {
 		return hitPoints < maxHitPoints;
