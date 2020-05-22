@@ -16,8 +16,14 @@ import game.ZombieMace;
  *
  */
 public class CraftingAction extends Action{
+	/**
+	 * An item to be crafted
+	 */
 	private Item craftedItem;
 	
+	/**Creates a crafting action by using the item to be crafted
+	 * @param newItem Item to be crafted
+	 */
 	public CraftingAction(Item newItem) {
 		craftedItem = newItem;
 	}
@@ -51,42 +57,6 @@ public class CraftingAction extends Action{
 			return result;
 			}
 			
-//		boolean executable=false;
-//		for(Item item  : actor.getInventory()) {
-//			if(item.hasCapability(ItemCapability.CRAFTABLE)){
-//				executable = true;
-//			}
-//		}
-//		String result = "";
-//		if(executable) {
-//			ArrayList<Item> limbs = new ArrayList<>();
-//			for(Item item  : actor.getInventory()) {
-//				if(item.getDisplayChar() == 'L' || item.getDisplayChar() == 'A' ) {
-//					limbs.add(item);
-//				}
-//			}
-//			for(Item item  : limbs) {
-//				if(item.getDisplayChar() == 'L') {
-//					actor.removeItemFromInventory(item);
-//					ZombieMace newMace = new ZombieMace();
-//					actor.addItemToInventory(newMace);
-//					result += "A Mace ";
-//			}
-//				else if(item.getDisplayChar() == 'A') {
-//					actor.removeItemFromInventory(item);
-//					ZombieClub newClub = new ZombieClub();
-//					actor.addItemToInventory(newClub);
-//					result += "A Club ";
-//					}
-//				}
-//			result += "is crafted";
-//		}
-//		else if(!executable) {
-//			result+="No item is crafted";
-//		}	
-//		return result;
-
-
     /**
      * Return a string of description on this action for display.
      *
