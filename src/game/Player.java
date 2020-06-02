@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Menu;
 import game.actions.CraftingAction;
+import game.actions.FireRangedWeaponAction;
 import game.actions.HarvestAction;
 
 /**
@@ -50,6 +51,9 @@ public class Player extends Human {
 		for(Item item : this.getInventory()) {
 			if(item.hasCapability(ItemCapability.CRAFTABLE)) {
 				actions.add(new CraftingAction(item));
+			}
+			if(item.hasCapability(ItemCapability.LOADED_WITH_SHOTGUN_AMMO)){
+				actions.add(new FireRangedWeaponAction(item));
 			}
 		}
 		return menu.showMenu(this, actions, display);
