@@ -15,5 +15,9 @@ public enum ItemCapability {
     /**
      * An Item is capable of being craftable.
      */
-    CRAFTABLE
+    CRAFTABLE,
+
+    LOADED_WITH_SHOTGUN_AMMO,
+
+    LOADED_WITH_RIFLE_AMMO
 }

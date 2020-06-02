@@ -117,7 +117,7 @@ public class Application {
 		townMap.at(7, 2).addItem(vehicleInTown);
 
 		// place shotgun in town
-//		townMap.at(8,2).addItem(new Shotgun());
+		townMap.at(8,2).addItem(new Shotgun());
 		
 		// FIXME: Add more zombies!
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));
