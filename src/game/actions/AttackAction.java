@@ -52,19 +52,26 @@ public class AttackAction extends Action {
 		target.hurt(damage);
 		if (!target.isConscious()) {
 			Item corpse = new PortableItem("dead " + target, '%');
-			map.locationOf(target).addItem(corpse);
-			
-			Actions dropActions = new Actions();
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction());
-			for (Action drop : dropActions)		
-				drop.execute(target, map);
-			map.removeActor(target);	
-			
-			result += System.lineSeparator() + target + " is killed.";
+			result += System.lineSeparator() + deadActor(map, corpse);
 		}
 
 		return result;
+	}
+
+	public String deadActor(GameMap map, Item corpse) {
+		map.locationOf(target).addItem(corpse);
+
+		Actions dropActions = new Actions();
+
+		for (Item item : target.getInventory())
+			dropActions.add(item.getDropAction());
+
+		for (Action drop : dropActions)
+			drop.execute(target, map);
+
+		map.removeActor(target);
+
+		return target + " is killed.";
 	}
 
 	@Override
