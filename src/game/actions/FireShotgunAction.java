@@ -93,11 +93,20 @@ public class FireShotgunAction extends AttackAction {
                 if ((p1 == pointToRemoveExtra2) && (p2 == point2 - 3 || p2 == point2 + 3)){
                     continue;
                 }
-                if (isxPoint1){
-                    target = map.at(p1, p2).getActor();
-                }
-                else {
-                    target = map.at(p2, p1).getActor();
+                if (isxPoint1) {
+                    try {
+                        target = map.at(p1, p2).getActor();
+                    }
+                    catch (ArrayIndexOutOfBoundsException e){
+                        System.out.println(actor + "'s shotgun cannot be fired towards area at (" + p1 + "," + p2 + ") as it is out of range of the map");
+                    }
+                } else {
+                    try {
+                        target = map.at(p2, p1).getActor();
+                    }
+                    catch (ArrayIndexOutOfBoundsException e){
+                        System.out.println(actor + "'s shotgun cannot be fired towards area at (" + p2 + "," + p1 + ") as it is out of range of the map");
+                    }
                 }
                 if (target != null){
                     target.hurt(damagePoints);
@@ -119,7 +128,12 @@ public class FireShotgunAction extends AttackAction {
                 if ((p1 == x) && (p2 == y)) {
                     continue;
                 }
-                target = map.at(p1, p2).getActor();
+                try {
+                    target = map.at(p1, p2).getActor();
+                }
+                catch (ArrayIndexOutOfBoundsException e){
+                    System.out.println(actor + "'s shotgun cannot be fired towards area at (" + p1 + "," + p2 + ") as it is out of range of the map");
+                }
                 if (target != null){
                     target.hurt(damagePoints);
                     result += System.lineSeparator() + actor + " shoot " + target + " for " + damagePoints + " damage.";

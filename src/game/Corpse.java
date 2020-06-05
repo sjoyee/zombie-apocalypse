@@ -59,6 +59,5 @@ public class Corpse extends PortableItem {
                 turn -= 1;
             }
         }
-
     }
 }
