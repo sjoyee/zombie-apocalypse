@@ -106,18 +106,23 @@ public class Application {
 		// place a simple weapon
 		gameMap.at(60, 20).addItem(new Plank());
 
-		// place a vehicle in old map
+		// place a vehicle in compound map to move to town
 		Vehicle vehicle = new Vehicle("Car", 'v');
 		vehicle.addAction(new MoveActorAction(townMap.at(7,2), "to Town"));
 		gameMap.at(39, 15).addItem(vehicle);
 
-		// place a vehicle in town
+		// place a vehicle in town to move to compound map
 		Vehicle vehicleInTown = new Vehicle("Car", 'v');
-		vehicleInTown.addAction(new MoveActorAction(gameMap.at(39, 15), "to Old Map"));
+		vehicleInTown.addAction(new MoveActorAction(gameMap.at(39, 15), "to Compound Map"));
 		townMap.at(7, 2).addItem(vehicleInTown);
 
+		// place boxes of ammunition in town and compound map
+		Item ammo = new PortableItem("box of ammunition", '*');
+		townMap.at(9,2).addItem(ammo);
+		gameMap.at(39,16).addItem(ammo);
+
 		// place shotgun in town
-		townMap.at(8,2).addItem(new Shotgun());
+		townMap.at(8,2).addItem(new Shotgun(ammo));
 		
 		// FIXME: Add more zombies!
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));

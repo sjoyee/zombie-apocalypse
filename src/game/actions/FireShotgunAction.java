@@ -49,18 +49,18 @@ public class FireShotgunAction extends AttackAction {
             result = hurtTargetMainDirection(actor, map, x+1, y, x+1, x-2);
         }
         else if (direction.equals("North-West")){
-            result = hurtTargetSubDirection(actor, map, x-3, y, x, y);
+            result = hurtTargetSubDirection(actor, map, x-3, y-3, x, y);
         }
         else if (direction.equals("North-East")){
-            result = hurtTargetSubDirection(actor, map, x, y, x, y);
-        }
-        else if (direction.equals("South-West")){
-            result = hurtTargetSubDirection(actor, map, x-3, y-3, x,y);
-        }
-        else if (direction.equals("South-East")){
             result = hurtTargetSubDirection(actor, map, x, y-3, x, y);
         }
-        else{
+        else if (direction.equals("South-West")){
+            result = hurtTargetSubDirection(actor, map, x-3, y, x,y);
+        }
+        else if (direction.equals("South-East")){
+            result = hurtTargetSubDirection(actor, map, x, y, x, y);
+        }
+        if (result.equals("")){
             return "No actor within area of effect.";
         }
 

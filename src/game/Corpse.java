@@ -46,13 +46,19 @@ public class Corpse extends PortableItem {
         }
         int lo, hi, range;
         lo = 5;
-        hi = 11;
+        hi = 10;
         range = random.nextInt(hi-lo) + lo;
-        if (turn == range && !currentLocation.containsAnActor()){
-            Zombie turnedZombie = new Zombie(name);
-            currentLocation.addActor(turnedZombie);
-            currentLocation.removeItem(this);
-            System.out.println("Oh no! " + name + " becomes a zombie!");
+        if (turn == range || turn == 10) {
+            if (!currentLocation.containsAnActor()) {
+                Zombie turnedZombie = new Zombie(name);
+                currentLocation.addActor(turnedZombie);
+                currentLocation.removeItem(this);
+                System.out.println("Oh no! " + name + " becomes a zombie!");
+            }
+            else if (currentLocation.containsAnActor() && turn == 10) {
+                turn -= 1;
+            }
         }
+
     }
 }
