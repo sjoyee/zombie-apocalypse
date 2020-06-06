@@ -110,7 +110,7 @@ public class FireShotgunAction extends AttackAction {
                 }
                 if (target != null){
                     target.hurt(damagePoints);
-                    result += System.lineSeparator() + actor + " shoot " + target + " for " + damagePoints + " damage.";
+                    result += actor + " shoot " + target + " for " + damagePoints + " damage." + System.lineSeparator();
                 }
             }
         }
@@ -136,7 +136,7 @@ public class FireShotgunAction extends AttackAction {
                 }
                 if (target != null){
                     target.hurt(damagePoints);
-                    result += System.lineSeparator() + actor + " shoot " + target + " for " + damagePoints + " damage.";
+                    result += actor + " shoot " + target + " for " + damagePoints + " damage." + System.lineSeparator();
                 }
             }
         }

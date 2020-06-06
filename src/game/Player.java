@@ -53,16 +53,21 @@ public class Player extends Human {
 			if(item.hasCapability(ItemCapability.CRAFTABLE)) {
 				actions.add(new CraftingAction(item));
 			}
-			if(item.hasCapability(ItemCapability.LOADED_WITH_SHOTGUN_AMMO)){
-				for(Item item2 : this.getInventory()) {
-					if (item2.hasCapability(ItemCapability.LOADED_IN_SHOTGUN)) {
-						actions.add(new FireRangedWeaponAction(item, item2));
-						break;
-					}
-				}
-			}
+			checkRangedWeapon(item, actions, ItemCapability.LOADED_WITH_SHOTGUN_AMMO, ItemCapability.LOADED_IN_SHOTGUN);
+			checkRangedWeapon(item, actions, ItemCapability.LOADED_WITH_RIFLE_AMMO, ItemCapability.LOADED_IN_RIFLE);
 		}
 		actions.add(new QuitGameAction());
 		return menu.showMenu(this, actions, display);
+	}
+
+	private void checkRangedWeapon(Item item, Actions actions, ItemCapability itemCapability1, ItemCapability itemCapability2){
+		if(item.hasCapability(itemCapability1)){
+			for(Item item2 : this.getInventory()) {
+				if (item2.hasCapability(itemCapability2)) {
+					actions.add(new FireRangedWeaponAction(item, item2));
+					break;
+				}
+			}
+		}
 	}
 }

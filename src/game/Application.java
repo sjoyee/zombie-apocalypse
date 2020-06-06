@@ -125,8 +125,8 @@ public class Application {
 
 		Item rifleAmmo = new PortableItem("box of rifle ammunition", '~');
 		rifleAmmo.addCapability(ItemCapability.LOADED_IN_RIFLE);
-        townMap.at(9,3).addItem(shotgunAmmo);
-        gameMap.at(39,17).addItem(shotgunAmmo);
+        townMap.at(9,3).addItem(rifleAmmo);
+        gameMap.at(39,17).addItem(rifleAmmo);
 
 		// place shotgun in town
 		townMap.at(8,2).addItem(new Shotgun(shotgunAmmo));
