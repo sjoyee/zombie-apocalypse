@@ -98,14 +98,14 @@ public class FireShotgunAction extends AttackAction {
                         target = map.at(p1, p2).getActor();
                     }
                     catch (ArrayIndexOutOfBoundsException e){
-                        System.out.println(actor + "'s shotgun cannot be fired towards area at (" + p1 + "," + p2 + ") as it is out of range of the map");
+                        System.out.println("Area at (" + p1 + "," + p2 + ") is out of range of the map");
                     }
                 } else {
                     try {
                         target = map.at(p2, p1).getActor();
                     }
                     catch (ArrayIndexOutOfBoundsException e){
-                        System.out.println(actor + "'s shotgun cannot be fired towards area at (" + p2 + "," + p1 + ") as it is out of range of the map");
+                        System.out.println("Area at (" + p2 + "," + p1 + ")is out of range of the map");
                     }
                 }
                 if (target != null){
@@ -128,11 +128,11 @@ public class FireShotgunAction extends AttackAction {
                 if ((p1 == x) && (p2 == y)) {
                     continue;
                 }
-                try {
+                try{
                     target = map.at(p1, p2).getActor();
                 }
                 catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println(actor + "'s shotgun cannot be fired towards area at (" + p1 + "," + p2 + ") as it is out of range of the map");
+                    System.out.println("Area at (" + p1 + "," + p2 + ") is out of range of the map");
                 }
                 if (target != null){
                     target.hurt(damagePoints);

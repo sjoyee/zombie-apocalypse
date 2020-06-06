@@ -113,8 +113,8 @@ public class Application {
 
 		// place a vehicle in town to move to compound map
 		Vehicle vehicleInTown = new Vehicle("Car", 'v');
-		vehicleInTown.addAction(new MoveActorAction(gameMap.at(39, 15), "to Compound Map"));
 		townMap.at(7, 2).addItem(vehicleInTown);
+		vehicleInTown.addAction(new MoveActorAction(gameMap.at(39, 15), "to Compound Map"));
 
 		// place boxes of ammunition in town and compound map
 		Item ammo = new PortableItem("box of ammunition", '*');
@@ -130,7 +130,12 @@ public class Application {
 		gameMap.at(10,  4).addActor(new Zombie("Uuuurgh"));
 		gameMap.at(60, 20).addActor(new Zombie("Mortalis"));
 		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
-		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));	
-		world.run();
+		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
+		try {
+			world.run();
+		}
+		catch (IllegalArgumentException e){
+			System.out.println("Player cannot move to other map in this turn. Please try again in the next time.");
+		}
 	}
 }
