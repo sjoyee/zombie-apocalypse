@@ -54,7 +54,12 @@ public class Player extends Human {
 				actions.add(new CraftingAction(item));
 			}
 			if(item.hasCapability(ItemCapability.LOADED_WITH_SHOTGUN_AMMO)){
-				actions.add(new FireRangedWeaponAction(item));
+				for(Item item2 : this.getInventory()) {
+					if (item2.hasCapability(ItemCapability.LOADED_IN_SHOTGUN)) {
+						actions.add(new FireRangedWeaponAction(item, item2));
+						break;
+					}
+				}
 			}
 		}
 		actions.add(new QuitGameAction());

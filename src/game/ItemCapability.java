@@ -19,5 +19,9 @@ public enum ItemCapability {
 
     LOADED_WITH_SHOTGUN_AMMO,
 
-    LOADED_WITH_RIFLE_AMMO
+    LOADED_WITH_RIFLE_AMMO,
+
+    LOADED_IN_SHOTGUN,
+
+    LOADED_IN_RIFLE
 }

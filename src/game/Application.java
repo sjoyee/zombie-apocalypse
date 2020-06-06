@@ -118,12 +118,20 @@ public class Application {
 		vehicleInTown.addAction(new MoveActorAction(gameMap.at(39, 15), "to Compound Map"));
 
 		// place boxes of ammunition in town and compound map
-		Item ammo = new PortableItem("box of ammunition", '*');
-		townMap.at(9,2).addItem(ammo);
-		gameMap.at(39,16).addItem(ammo);
+		Item shotgunAmmo = new PortableItem("box of shotgun ammunition", '*');
+		shotgunAmmo.addCapability(ItemCapability.LOADED_IN_SHOTGUN);
+		townMap.at(9,2).addItem(shotgunAmmo);
+		gameMap.at(39,16).addItem(shotgunAmmo);
+
+		Item rifleAmmo = new PortableItem("box of rifle ammunition", '~');
+		rifleAmmo.addCapability(ItemCapability.LOADED_IN_RIFLE);
+        townMap.at(9,3).addItem(shotgunAmmo);
+        gameMap.at(39,17).addItem(shotgunAmmo);
 
 		// place shotgun in town
-		townMap.at(8,2).addItem(new Shotgun(ammo));
+		townMap.at(8,2).addItem(new Shotgun(shotgunAmmo));
+
+		// place sniple rifle in town
 		
 		// FIXME: Add more zombies!
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));

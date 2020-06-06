@@ -6,10 +6,12 @@ import game.ItemCapability;
 public class FireRangedWeaponAction extends Action {
 
     private Item rangedWeapon;
+    private Item ammo;
     private Menu menu = new Menu();
 
-    public FireRangedWeaponAction(Item rangedWeapon){
+    public FireRangedWeaponAction(Item rangedWeapon, Item ammo){
         this.rangedWeapon = rangedWeapon;
+        this.ammo = ammo;
     }
     @Override
     public String execute(Actor actor, GameMap map) {
@@ -22,6 +24,7 @@ public class FireRangedWeaponAction extends Action {
                 action = new FireShotgunAction(exit.getName(), exit.getHotKey(), rangedWeapon.asWeapon().damage(), null);
                 actions.add(action);
             }
+            actor.removeItemFromInventory(ammo);
         }
 //        if (rangedWeapon.hasCapability(ItemCapability.LOADED_WITH_RIFLE_AMMO)){
 //            display.println("Ranged Weapon available: " + rangedWeapon);

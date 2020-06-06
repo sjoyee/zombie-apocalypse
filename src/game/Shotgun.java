@@ -22,5 +22,8 @@ public class Shotgun extends WeaponItem {
         if (actor.getInventory().contains(ammunition)){
             this.addCapability(ItemCapability.LOADED_WITH_SHOTGUN_AMMO);
         }
+        else{
+            this.removeCapability(ItemCapability.LOADED_WITH_SHOTGUN_AMMO);
+        }
     }
 }
