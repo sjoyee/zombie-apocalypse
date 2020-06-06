@@ -133,11 +133,6 @@ public class Application {
 		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
 		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
 
-		try {
-			world.run();
-		}
-		catch (IllegalArgumentException e){
-			System.out.println("Player cannot move to other map in this turn. Please try again in the next time.");
-		}
+		world.run();
 	}
 }

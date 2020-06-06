@@ -23,6 +23,16 @@ public class NewWorld extends World{
 	}
 
 	@Override
+	protected void processActorTurn(Actor actor) {
+		try {
+			super.processActorTurn(actor);
+		}
+		catch (IllegalArgumentException e){
+			System.out.println("Player cannot move to the other map in this turn, please try in the next turn");
+		}
+	}
+
+	@Override
 	protected String endGameMessage() {
 		String result = "";
 		if (win()){
