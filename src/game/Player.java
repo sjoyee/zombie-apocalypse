@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.Menu;
 import game.actions.CraftingAction;
 import game.actions.FireRangedWeaponAction;
 import game.actions.HarvestAction;
+import game.actions.QuitGameAction;
 
 /**
  * Class representing the Player.
@@ -56,6 +57,7 @@ public class Player extends Human {
 				actions.add(new FireRangedWeaponAction(item));
 			}
 		}
+		actions.add(new QuitGameAction());
 		return menu.showMenu(this, actions, display);
 	}
 }

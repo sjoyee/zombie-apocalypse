@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.*;
 public class Application {
 
 	public static void main(String[] args) {
-		World world = new World(new Display());
+		NewWorld world = new NewWorld(new Display());
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Fence(), new Tree());
 		
@@ -42,8 +42,9 @@ public class Application {
 		".........................................................................++++...",
 		"..........................................................................++....",
 		"................................................................................");
-		GameMap gameMap = new GameMap(groundFactory, map );
+		GameMap gameMap = new GameMap(groundFactory, map);
 		world.addGameMap(gameMap);
+		world.setCompoundMap(gameMap);
 
 		List<String> town = Arrays.asList(
 		"................................................................................",
@@ -74,7 +75,7 @@ public class Application {
 		GameMap townMap = new GameMap(groundFactory, town);
 		world.addGameMap(townMap);
 		
-		Actor player = new Player("Player", '@', 1000);
+		Actor player = new Player("Player", '@', 100);
 		world.addPlayer(player, gameMap.at(38, 15));
 		
 	    // Place some random humans
@@ -85,9 +86,9 @@ public class Application {
 			do {
 				x = (int) Math.floor(Math.random() * 20.0 + 30.0);
 				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
-			} 
+			}
 			while (gameMap.at(x, y).containsAnActor());
-			gameMap.at(x,  y).addActor(new Human(name));	
+			gameMap.at(x,  y).addActor(new Human(name));
 		}
 
 		// Place some random farmers
@@ -131,6 +132,7 @@ public class Application {
 		gameMap.at(60, 20).addActor(new Zombie("Mortalis"));
 		gameMap.at(1, 10).addActor(new Zombie("Gaaaah"));
 		gameMap.at(62, 12).addActor(new Zombie("Aaargh"));
+
 		try {
 			world.run();
 		}
