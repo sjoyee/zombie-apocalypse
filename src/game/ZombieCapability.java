@@ -18,5 +18,7 @@ public enum ZombieCapability {
 	/**
 	 * An Actor is capable of farming.
 	 */
-	FARM
+	FARM,
+	CHANT,
+	MAMBO
 }
