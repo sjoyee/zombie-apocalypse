@@ -2,16 +2,69 @@ package game;
 
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.DoNothingAction;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.World;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class NewWorld extends World{
 	private GameMap compoundMap;
-
+	private Location mamboLocation;
 	public NewWorld(Display display) {
 		super(display);
+	}
+	
+	@Override
+	public void run() {
+		if (player == null)
+			throw new IllegalStateException();
+
+		// initialize the last action map to nothing actions;
+		for (Actor actor : actorLocations) {
+			lastActionMap.put(actor, new DoNothingAction());
+		}
+
+		// This loop is basically the whole game
+		while (stillRunning()) {
+			GameMap playersMap = actorLocations.locationOf(player).map();
+			playersMap.draw(display);
+
+			// Process all the actors.
+			getMambo();
+			for (Actor actor : actorLocations) {
+				if (stillRunning())
+					processActorTurn(actor);
+			}
+
+			// Tick over all the maps. For the map stuff.
+			for (GameMap gameMap : gameMaps) {
+				gameMap.tick();
+			}
+
+		}
+		display.println(endGameMessage());
+	}
+	private void getMambo() {
+		boolean ret = false;
+		for(Actor actor : actorLocations) {
+			if(actor.hasCapability(ZombieCapability.MAMBO)) {
+				mamboLocation = actorLocations.locationOf(actor);
+				ret = true;
+			}
+		}
+		if(!ret) {
+			Random rand = new Random();
+			if(rand.nextBoolean()) {
+				Actor mambo = new MamboMarie("Marie");
+				actorLocations.add(mambo,mamboLocation);
+				System.out.println("Mambo Marie has reappear!!!!!!!!!!");
+			}
+
+		}
+		
 	}
 
 	public void setCompoundMap(GameMap map){
