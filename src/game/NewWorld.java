@@ -58,7 +58,7 @@ public class NewWorld extends World{
 		if(!ret) {
 			Random rand = new Random();
 			if(rand.nextBoolean()) {
-				Actor mambo = new MamboMarie("Marie");
+				Actor mambo = new MamboMarie("Mambo Marie");
 				actorLocations.add(mambo,mamboLocation);
 				System.out.println("Mambo Marie has reappear!!!!!!!!!!");
 			}

@@ -13,6 +13,6 @@ public class QuitGameAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " quit game";
+        return actor + " quits game";
     }
 }

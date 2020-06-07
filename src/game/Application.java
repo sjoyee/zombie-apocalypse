@@ -75,7 +75,7 @@ public class Application {
 		GameMap townMap = new GameMap(groundFactory, town);
 		world.addGameMap(townMap);
 		
-		Actor player = new Player("Player", '@', 100);
+		Actor player = new Player("Player", '@', 1000);
 		world.addPlayer(player, gameMap.at(38, 15));
 		
 	    // Place some random humans
@@ -103,6 +103,9 @@ public class Application {
 		}
 		gameMap.at(10, 15).addActor(new Farmer("Farmer Chris"));
 		gameMap.at(65, 5).addActor(new Farmer("Farmer Dora"));
+
+		// Place Mambo Marie at the edge of compound map
+		gameMap.at(79, 24).addActor(new MamboMarie("Mambo Marie"));
 
 		// place a simple weapon
 		gameMap.at(60, 20).addItem(new Plank());
@@ -132,17 +135,17 @@ public class Application {
 		rifleAmmo.addCapability(ItemCapability.LOADED_IN_RIFLE);
 
 		for (int i = 0; i <= 10; i++){
-			x = (int) Math.floor(Math.random() * 20.0 + 50.0);
+			x = (int) Math.floor(Math.random() * 20.0 + 40.0);
 			y = (int) Math.floor(Math.random() * 7.0 + 16.0);
 			gameMap.at(x,y).addItem(rifleAmmo);
 			townMap.at(x,y).addItem(rifleAmmo);
 		}
 
 		// place shotgun in town
-		townMap.at(8,2).addItem(new Shotgun(shotgunAmmo));
+		townMap.at(36,16).addItem(new Shotgun(shotgunAmmo));
 
 		// place sniple rifle in town
-		townMap.at(8, 3).addItem(new SniperRifle(rifleAmmo));
+		townMap.at(37, 16).addItem(new SniperRifle(rifleAmmo));
 		
 		// FIXME: Add more zombies!
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));
