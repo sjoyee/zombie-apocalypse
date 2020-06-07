@@ -26,9 +26,27 @@ public class FireRangedWeaponAction extends Action {
             }
             actor.removeItemFromInventory(ammo);
         }
-//        if (rangedWeapon.hasCapability(ItemCapability.LOADED_WITH_RIFLE_AMMO)){
+//        else if (rangedWeapon.hasCapability(ItemCapability.LOADED_WITH_RIFLE_AMMO)){
 //            display.println("Ranged Weapon available: " + rangedWeapon);
-//            actions.add(new FireSnipleRifleAction(null));
+//            int range = 5;
+//            int x=map.locationOf(actor).x();
+//    		int y=map.locationOf(actor).y();
+//    		int startx = x-range;
+//    		int starty = y-range;
+//    		for(int i = startx ; i<startx+(2*range)+1; i++) {
+//    			for(int j = starty ; j<starty+(2*range)+1; j++) {
+//    				boolean ret = false;
+//    				try {
+//    					ret = map.at(i, j).containsAnActor();
+//    				}
+//    				catch(ArrayIndexOutOfBoundsException e){
+//    					}
+//    				if(ret && map.at(i,j)!=map.at(x, y)) {
+//    					action = new FireSniperRifleAction(map.at(i, j).getActor(), rangedWeapon.asWeapon().damage());
+//    					actions.add(action);
+//    				}
+//    			}
+//    		}
 //        }
         menuAction = menu.showMenu(actor, actions, display);
         if (menuAction != null){
