@@ -109,29 +109,40 @@ public class Application {
 
 		// place a vehicle in compound map to move to town
 		Vehicle vehicle = new Vehicle("Car", 'v');
-		vehicle.addAction(new MoveActorAction(townMap.at(7,2), "to Town"));
+		vehicle.addAction(new MoveActorAction(townMap.at(35,16), "to Town"));
 		gameMap.at(39, 15).addItem(vehicle);
 
 		// place a vehicle in town to move to compound map
 		Vehicle vehicleInTown = new Vehicle("Car", 'v');
-		townMap.at(7, 2).addItem(vehicleInTown);
+		townMap.at(35, 16).addItem(vehicleInTown);
 		vehicleInTown.addAction(new MoveActorAction(gameMap.at(39, 15), "to Compound Map"));
 
 		// place boxes of ammunition in town and compound map
 		Item shotgunAmmo = new PortableItem("box of shotgun ammunition", '*');
 		shotgunAmmo.addCapability(ItemCapability.LOADED_IN_SHOTGUN);
-		townMap.at(9,2).addItem(shotgunAmmo);
-		gameMap.at(39,16).addItem(shotgunAmmo);
+
+		for (int i = 0; i <= 10; i++){
+			x = (int) Math.floor(Math.random() * 20.0 + 20.0);
+			y = (int) Math.floor(Math.random() * 7.0 + 16.0);
+			gameMap.at(x,y).addItem(shotgunAmmo);
+			townMap.at(x,y).addItem(shotgunAmmo);
+		}
 
 		Item rifleAmmo = new PortableItem("box of rifle ammunition", '~');
 		rifleAmmo.addCapability(ItemCapability.LOADED_IN_RIFLE);
-        townMap.at(9,3).addItem(rifleAmmo);
-        gameMap.at(39,17).addItem(rifleAmmo);
+
+		for (int i = 0; i <= 10; i++){
+			x = (int) Math.floor(Math.random() * 20.0 + 50.0);
+			y = (int) Math.floor(Math.random() * 7.0 + 16.0);
+			gameMap.at(x,y).addItem(rifleAmmo);
+			townMap.at(x,y).addItem(rifleAmmo);
+		}
 
 		// place shotgun in town
 		townMap.at(8,2).addItem(new Shotgun(shotgunAmmo));
 
 		// place sniple rifle in town
+		townMap.at(8, 3).addItem(new SniperRifle(rifleAmmo));
 		
 		// FIXME: Add more zombies!
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));
