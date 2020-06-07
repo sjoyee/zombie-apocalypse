@@ -8,41 +8,59 @@ import edu.monash.fit2099.engine.Item;
 import game.AimCapability;
 import game.PortableItem;
 
-public class ShootAction extends Action{
-	private Actor target;
+public class ShootAction extends AttackAction{
 	private int damage;
+	private Item ammo;
 	
 	
-	public ShootAction(Actor target, int damage) {
-		this.target = target;
+	public ShootAction(Actor target, int damage, Item ammo) {
+		super(target);
 		this.damage = damage;
+		this.ammo = ammo;
 	}
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		String result="";
+		String result = "";
 		if(target.hasCapability(AimCapability.ROUND1)) {
-			damage= damage*2;
+			damage = damage * 2;
 		}
-		else if(target.hasCapability(AimCapability.ROUND2)) {
-			damage = 1000;
+
+		if(target.hasCapability(AimCapability.ROUND2)) {
+			result = actor + " instakill " + target;
+//			damage = 1000;
 		}
-		target.hurt(damage);
-		result = actor + " shoots " + target + " for " + damage;
-		if (!target.isConscious()) {
+		else{
+			target.hurt(damage);
+			result += actor + " shoots " + target + " for " + damage + " damage";
+		}
+
+		if (ammo != null) {
+			actor.removeItemFromInventory(ammo);
+		}
+		if (!target.isConscious() || target.hasCapability(AimCapability.ROUND2)) {
 			Item corpse = new PortableItem("dead " + target, '%');
-			map.locationOf(target).addItem(corpse);
-			
-			Actions dropActions = new Actions();
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction());
-			for (Action drop : dropActions)		
-				drop.execute(target, map);
-			map.removeActor(target);	
-			
-			result += System.lineSeparator() + target + " is killed.";
+			result += System.lineSeparator() + deadActor(map, corpse);
 		}
 		return result;
+
+//		target.hurt(damage);
+//		actor.removeItemFromInventory(ammo);
+//		result = actor + " shoots " + target + " for " + damage + " damage ";
+//		if (!target.isConscious()) {
+//			Item corpse = new PortableItem("dead " + target, '%');
+//			map.locationOf(target).addItem(corpse);
+//
+//			Actions dropActions = new Actions();
+//			for (Item item : target.getInventory())
+//				dropActions.add(item.getDropAction());
+//			for (Action drop : dropActions)
+//				drop.execute(target, map);
+//			map.removeActor(target);
+//
+//			result += System.lineSeparator() + target + " is killed.";
+//		}
+//		return result;
 	}
 
 	@Override

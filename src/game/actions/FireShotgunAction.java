@@ -3,9 +3,8 @@ package game.actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.NumberRange;
-import game.PortableItem;
 
 public class FireShotgunAction extends AttackAction {
 
@@ -23,6 +22,7 @@ public class FireShotgunAction extends AttackAction {
 
     @Override
     public String execute(Actor actor, GameMap map) {
+        String result = "";
         Location here = map.locationOf(actor);
         int x, y;
         x = here.x();
@@ -31,45 +31,42 @@ public class FireShotgunAction extends AttackAction {
         if (rand.nextDouble() <= 0.25){
             return actor + " fails to fire shotgun ";
         }
-        String result = "";
+
+        result = actor + " fires shotgun towards " + direction + System.lineSeparator();
+
         if (direction.equals("North")){
             isxPoint1 = false;
-            result = hurtTargetMainDirection(actor, map, y-3, x, y-1, y-2);
+            result += hurtTargetMainDirection(actor, map, y-3, x, y-1, y-2);
         }
         else if (direction.equals("South")){
             isxPoint1 = false;
-            result = hurtTargetMainDirection(actor, map, y+1, x, y+1, y+2);
+            result += hurtTargetMainDirection(actor, map, y+1, x, y+1, y+2);
         }
         else if (direction.equals("West")){
             isxPoint1 = true;
-            result = hurtTargetMainDirection(actor, map, x-3, y, x-1, x-2);
+            result += hurtTargetMainDirection(actor, map, x-3, y, x-1, x-2);
         }
         else if (direction.equals("East")){
             isxPoint1 = true;
-            result = hurtTargetMainDirection(actor, map, x+1, y, x+1, x-2);
+            result += hurtTargetMainDirection(actor, map, x+1, y, x+1, x-2);
         }
         else if (direction.equals("North-West")){
-            result = hurtTargetSubDirection(actor, map, x-3, y-3, x, y);
+            result += hurtTargetSubDirection(actor, map, x-3, y-3, x, y);
         }
         else if (direction.equals("North-East")){
-            result = hurtTargetSubDirection(actor, map, x, y-3, x, y);
+            result += hurtTargetSubDirection(actor, map, x, y-3, x, y);
         }
         else if (direction.equals("South-West")){
-            result = hurtTargetSubDirection(actor, map, x-3, y, x,y);
+            result += hurtTargetSubDirection(actor, map, x-3, y, x,y);
         }
         else if (direction.equals("South-East")){
-            result = hurtTargetSubDirection(actor, map, x, y, x, y);
+            result += hurtTargetSubDirection(actor, map, x, y, x, y);
         }
+
         if (result.equals("")){
             return "No actor within area of effect.";
         }
 
-        if (target != null) {
-            if (!target.isConscious()) {
-                Item corpse = new PortableItem("dead " + target, '%');
-                result += System.lineSeparator() + deadActor(map, corpse);
-            }
-        }
         return result;
     }
 
@@ -93,24 +90,19 @@ public class FireShotgunAction extends AttackAction {
                 if ((p1 == pointToRemoveExtra2) && (p2 == point2 - 3 || p2 == point2 + 3)){
                     continue;
                 }
-                if (isxPoint1) {
-                    try {
+                try {
+                    if (isxPoint1) {
                         target = map.at(p1, p2).getActor();
-                    }
-                    catch (ArrayIndexOutOfBoundsException e){
-                        System.out.println("Area at (" + p1 + "," + p2 + ") is out of range of the map");
-                    }
-                } else {
-                    try {
+                    } else {
                         target = map.at(p2, p1).getActor();
                     }
-                    catch (ArrayIndexOutOfBoundsException e){
-                        System.out.println("Area at (" + p2 + "," + p1 + ")is out of range of the map");
-                    }
+                }
+                catch (ArrayIndexOutOfBoundsException e){
+                    //pass
                 }
                 if (target != null){
-                    target.hurt(damagePoints);
-                    result += actor + " shoot " + target + " for " + damagePoints + " damage." + System.lineSeparator();
+                    Action shootAction = new ShootAction(target, damagePoints, null);
+                    result += shootAction.execute(actor, map) + System.lineSeparator();
                 }
             }
         }
@@ -132,11 +124,11 @@ public class FireShotgunAction extends AttackAction {
                     target = map.at(p1, p2).getActor();
                 }
                 catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("Area at (" + p1 + "," + p2 + ") is out of range of the map");
+                    //pass
                 }
                 if (target != null){
-                    target.hurt(damagePoints);
-                    result += actor + " shoot " + target + " for " + damagePoints + " damage." + System.lineSeparator();
+                    Action shootAction = new ShootAction(target, damagePoints, null);
+                    result += shootAction.execute(actor, map) + System.lineSeparator();
                 }
             }
         }

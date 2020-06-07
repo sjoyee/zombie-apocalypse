@@ -9,7 +9,7 @@ public class Shotgun extends RangedWeapon {
      * Constructor.
      */
     public Shotgun(Item ammunition) {
-        super("shotgun", 'g', 30, "whacks", ammunition);
+        super("shotgun", 'G', 30, "whacks", ammunition);
     }
 
     @Override

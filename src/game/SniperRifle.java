@@ -7,7 +7,7 @@ import edu.monash.fit2099.engine.Location;
 public class SniperRifle extends RangedWeapon{
 
 	public SniperRifle(Item ammunition) {
-		super("Sniper", 'R', 20, "shot", ammunition);
+		super("sniper rifle", 'R', 20, "whacks", ammunition);
 	}
 
 	@Override
