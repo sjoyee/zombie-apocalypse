@@ -120,7 +120,7 @@ public class Application {
 		townMap.at(35, 16).addItem(vehicleInTown);
 		vehicleInTown.addAction(new MoveActorAction(gameMap.at(39, 15), "to Compound Map"));
 
-		// place boxes of ammunition in town and compound map
+		// place boxes of shotgun and sniple rifle ammunition in town and compound map
 		Item shotgunAmmo = new PortableItem("box of shotgun ammunition", '*');
 		shotgunAmmo.addCapability(ItemCapability.LOADED_IN_SHOTGUN);
 
@@ -138,6 +138,8 @@ public class Application {
 			x = (int) Math.floor(Math.random() * 20.0 + 40.0);
 			y = (int) Math.floor(Math.random() * 7.0 + 16.0);
 			gameMap.at(x,y).addItem(rifleAmmo);
+			gameMap.at(x,y).addItem(rifleAmmo);
+			townMap.at(x,y).addItem(rifleAmmo);
 			townMap.at(x,y).addItem(rifleAmmo);
 		}
 
@@ -146,6 +148,14 @@ public class Application {
 
 		// place sniple rifle in town
 		townMap.at(37, 16).addItem(new SniperRifle(rifleAmmo));
+
+		// place bombs in compound
+		gameMap.at(28, 6).addItem(new Bomb());
+		gameMap.at(40, 8).addItem(new Bomb());
+		gameMap.at(54, 6).addItem(new Bomb());
+		gameMap.at(12, 18).addItem(new Bomb());
+		gameMap.at(57, 18).addItem(new Bomb());
+
 		
 		// FIXME: Add more zombies!
 		gameMap.at(30, 20).addActor(new Zombie("Groan"));
