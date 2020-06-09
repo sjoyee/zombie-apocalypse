@@ -111,12 +111,12 @@ public class Application {
 		gameMap.at(60, 20).addItem(new Plank());
 
 		// place a vehicle in compound map to move to town
-		Vehicle vehicle = new Vehicle("Car", 'v');
+		Vehicle vehicle = new Vehicle("Car to town", 'v');
 		vehicle.addAction(new MoveActorAction(townMap.at(35,16), "to Town"));
 		gameMap.at(39, 15).addItem(vehicle);
 
 		// place a vehicle in town to move to compound map
-		Vehicle vehicleInTown = new Vehicle("Car", 'v');
+		Vehicle vehicleInTown = new Vehicle("Car to compound", 'v');
 		townMap.at(35, 16).addItem(vehicleInTown);
 		vehicleInTown.addAction(new MoveActorAction(gameMap.at(39, 15), "to Compound Map"));
 
