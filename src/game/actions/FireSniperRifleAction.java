@@ -30,7 +30,7 @@ public class FireSniperRifleAction extends Action{
 			actions.add(new AimAction(target));
 			actions.add(new ShootAction(target,damage, ammo));
 		}
-		else if(target.hasCapability(AimCapability.ROUND2)) {
+		else if(target.hasCapability(AimCapability.ROUND2) && actor.hasCapability(AimCapability.CONCENTRATION)) {
 			actions.add( new ShootAction(target,damage, ammo));
 		}
 		else if(!target.hasCapability(AimCapability.ROUND1) && !target.hasCapability(AimCapability.ROUND2 )){

@@ -12,6 +12,7 @@ import java.util.Random;
 
 public class NewWorld extends World{
 	private GameMap compoundMap;
+	protected Actor  marie;
 	private Location mamboLocation;
 	public NewWorld(Display display) {
 		super(display);
@@ -51,15 +52,17 @@ public class NewWorld extends World{
 		boolean ret = false;
 		for(Actor actor : actorLocations) {
 			if(actor.hasCapability(ZombieCapability.MAMBO)) {
+				marie = actor;
 				mamboLocation = actorLocations.locationOf(actor);
 				ret = true;
 			}
+
 		}
-		if(!ret) {
+		if(!ret && marie.hasCapability(ZombieCapability.VANISH)) {
 			Random rand = new Random();
 			if(rand.nextBoolean()) {
-				Actor mambo = new MamboMarie("Mambo Marie");
-				actorLocations.add(mambo,mamboLocation);
+				actorLocations.add(marie,mamboLocation);
+				marie.removeCapability(ZombieCapability.VANISH);
 				System.out.println("Mambo Marie has reappear!!!!!!!!!!");
 			}
 
