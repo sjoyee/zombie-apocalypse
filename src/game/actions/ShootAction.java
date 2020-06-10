@@ -38,17 +38,13 @@ public class ShootAction extends AttackAction{
 		}
 
 		else if(target.hasCapability(AimCapability.ROUND2)  && actor.hasCapability(AimCapability.CONCENTRATION)) {
-			result = actor + " instakill " + target +  System.lineSeparator();
-			damage = 1000;
-			target.hurt(damage);
-			result += actor + " shoots " + target + " for " + damage + " damage";
+			result = actor + " instakill " + target;
 		}
 
-		if( result != actor + " misses " + target) {
-			this.removeCapability(target);
-			if (ammo != null) {
-				actor.removeItemFromInventory(ammo);
-			}
+		this.removeCapability(target);
+		if (ammo != null) {
+			actor.removeItemFromInventory(ammo);
+			
 		}
 		if (!target.isConscious() || target.hasCapability(AimCapability.ROUND2)) {
 			Item corpse = new PortableItem("dead " + target, '%');

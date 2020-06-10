@@ -18,7 +18,7 @@ public class VanishAction extends Action{
 
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor + " can vanosh. ";
+		return actor + " can vanish. ";
 	}
 	
 

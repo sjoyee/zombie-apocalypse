@@ -59,8 +59,9 @@ public class NewWorld extends World{
 
 		}
 		if(!ret && marie.hasCapability(ZombieCapability.VANISH)) {
-			Random rand = new Random();
-			if(rand.nextBoolean()) {
+//			Random rand = new Random();
+			double chances = Math.random();
+			if(chances <=0.05) {
 				actorLocations.add(marie,mamboLocation);
 				marie.removeCapability(ZombieCapability.VANISH);
 				System.out.println("Mambo Marie has reappear!!!!!!!!!!");
