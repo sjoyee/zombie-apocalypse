@@ -3,16 +3,50 @@ package game.actions;
 import edu.monash.fit2099.engine.*;
 import game.ItemCapability;
 
+/**
+ * Special Action that allows Actor to fire ranged weapon.
+ *
+ * @author Siang Jo Yee
+ * @author Lua Shi Liang
+ */
 public class FireRangedWeaponAction extends Action {
 
+    /**
+     * An item which represents the ranged weapon.
+     */
     private Item rangedWeapon;
+
+    /**
+     * An item which represents the ammunition.
+     */
     private Item ammo;
+
+    /**
+     * A submenu created if this action is executed.
+     */
     private Menu menu = new Menu();
 
+    /**
+     * Create a FireRangedWeaponAction object using an item that specifies the ranged weapon and an item which specifies
+     * the ammunition.
+     *
+     * @param rangedWeapon An item which represents the ranged weapon
+     * @param ammo An item which represents the ammunition
+     */
     public FireRangedWeaponAction(Item rangedWeapon, Item ammo){
         this.rangedWeapon = rangedWeapon;
         this.ammo = ammo;
     }
+
+    /**
+     * Display the submenu for the chosen ranged weapon if it is loaded with ammunition and fulfil the criteria to be
+     * fired if there is any. For shotgun, it could be fired towards eight directions, which are the cardinal and
+     * ordinal directions from the coordinate of the {@code actor}. For sniple rifle, # pls continue thanks
+     *
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         Actions actions = new Actions();
@@ -21,7 +55,7 @@ public class FireRangedWeaponAction extends Action {
         if (rangedWeapon.hasCapability(ItemCapability.LOADED_WITH_SHOTGUN_AMMO)){
             display.println(actor + " choose to fire " + rangedWeapon);
             for (Exit exit: map.locationOf(actor).getExits()){
-                action = new FireShotgunAction(exit.getName(), exit.getHotKey(), rangedWeapon.asWeapon().damage(), null);
+                action = new FireShotgunAction(exit.getName(), exit.getHotKey(), rangedWeapon.asWeapon().damage() * 2);
                 actions.add(action);
             }
             actor.removeItemFromInventory(ammo);
@@ -58,6 +92,12 @@ public class FireRangedWeaponAction extends Action {
         return menuAction.execute(actor, map);
     }
 
+    /**
+     * Return a string of description on this action for display and for the Player to choose the ranged weapon to be fired.
+     *
+     * @param actor The actor performing the action.
+     * @return A string of description on this action for display
+     */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " fires " + rangedWeapon;

@@ -16,10 +16,10 @@ public class Shotgun extends RangedWeapon {
      * integer that specifies the amount of damage this shotgun does and an item which represents the ammunition
      * to be loaded into this shotgun.
      *
-     * @param ammunition item representing the ammunition to be loaded into this shotgun
+     * @param ammunition An item representing the ammunition to be loaded into this shotgun.
      */
     public Shotgun(Item ammunition) {
-        super("shotgun", 'G', 30, ammunition);
+        super("shotgun", 'G', 10, ammunition);
     }
 
     /**

@@ -18,12 +18,12 @@ public class RangedWeapon extends WeaponItem {
 
     /**
      * Create a RangedWeapon object which is not portable using a String that specifies its name, a char
-     * that specifies its display character, an integer that specifies the amount of damage this ranged weapon does and
-     * and an item which represents the ammunition to be loaded into this ranged weapon.
+     * that specifies its display character, an integer that specifies the amount of damage this ranged weapon does as a
+     * melee weapon and an item which represents the ammunition to be loaded into this ranged weapon.
      *
      * @param name        name of the weapon item
      * @param displayChar character to use for display when this ranged weapon is on the ground
-     * @param damage      amount of damage this ranged weapon does
+     * @param damage      amount of damage this ranged weapon does as a melee weapon
      * @param ammunition  item representing the ammunition to be loaded into this ranged weapon
      */
     public RangedWeapon(String name, char displayChar, int damage, Item ammunition) {
