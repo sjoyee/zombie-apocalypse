@@ -45,7 +45,7 @@ public class FireRangedWeaponAction extends Action {
      *
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
-     * @return
+     * @return The string of description on the action of the ranged weapon after chosen to be fired.
      */
     @Override
     public String execute(Actor actor, GameMap map) {
