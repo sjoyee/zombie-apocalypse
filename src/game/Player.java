@@ -28,6 +28,11 @@ public class Player extends Human {
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
 	}
+	
+	public void hurt(int damage) {
+		super.hurt(damage);
+		this.removeCapability(AimCapability.CONCENTRATION);
+	}
 
 	/**
 	 * Select and return an action to perform on the current turn according to the displayed description of Action on the menu.
@@ -46,6 +51,10 @@ public class Player extends Human {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+		if(!(lastAction instanceof FireRangedWeaponAction)) {
+			display.println("Player loses concentration");		
+			this.removeCapability(AimCapability.CONCENTRATION);
+		}
 		if (map.locationOf(this).getGround().hasCapability(GroundCapability.CAN_BE_HARVESTED)){
 			actions.add(new HarvestAction(map.locationOf(this)));
 		}

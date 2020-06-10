@@ -25,7 +25,7 @@ public class AimAction extends Action {
 			target.addCapability(AimCapability.ROUND1);
 			result = "Aim for first round";
 		}
-		if(target.hasCapability(AimCapability.ROUND1) && actor.hasCapability(AimCapability.CONCENTRATION)) {
+		else if(target.hasCapability(AimCapability.ROUND1) && actor.hasCapability(AimCapability.CONCENTRATION)) {
 			target.removeCapability(AimCapability.ROUND1);
 			target.addCapability(AimCapability.ROUND2);
 			result = "Aim for second round";

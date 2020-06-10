@@ -22,33 +22,32 @@ public class ShootAction extends AttackAction{
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		String result = actor + " misses " + target;
-		String success = actor + " shoots " + target + " for " + damage + " damage";
 		double chances = Math.random();
 		if(!target.hasCapability(AimCapability.ROUND1) && !target.hasCapability(AimCapability.ROUND2)) {
 			if(chances <= 0.75) {
 				target.hurt(damage);
-				result = success;
+				result = actor + " shoots " + target + " for " + damage + " damage";
 			}
 		}
-		else if(target.hasCapability(AimCapability.ROUND1)) {
+		else if(target.hasCapability(AimCapability.ROUND1)  && actor.hasCapability(AimCapability.CONCENTRATION)) {
 			if(chances <= 0.9) {
 				damage = damage * 2;
 				target.hurt(damage);
-				result = success;
+				result = actor + " shoots " + target + " for " + damage + " damage";
 			}
 		}
 
-		else if(target.hasCapability(AimCapability.ROUND2)) {
+		else if(target.hasCapability(AimCapability.ROUND2)  && actor.hasCapability(AimCapability.CONCENTRATION)) {
 			result = actor + " instakill " + target +  System.lineSeparator();
 			damage = 1000;
 			target.hurt(damage);
-			result = success;
+			result += actor + " shoots " + target + " for " + damage + " damage";
 		}
 
-
-		if( result == success) {
+		if( result != actor + " misses " + target) {
+			this.removeCapability(target);
 			if (ammo != null) {
-			actor.removeItemFromInventory(ammo);
+				actor.removeItemFromInventory(ammo);
 			}
 		}
 		if (!target.isConscious() || target.hasCapability(AimCapability.ROUND2)) {
