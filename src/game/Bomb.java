@@ -4,7 +4,7 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
-
+import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -24,6 +24,7 @@ public class Bomb extends Item {
         super.tick(currentLocation);
         final int DAMAGE = 10;
         ArrayList<Location> locationList = new ArrayList<>();
+        ArrayList<Item> itemsList = new ArrayList<>();
         locationList.add(currentLocation);
         for (Exit exit: currentLocation.getExits()){
             locationList.add(exit.getDestination());
@@ -33,12 +34,13 @@ public class Bomb extends Item {
             for (Location location : locationList) {
                 location.setGround(new Dirt());
                 location.getGround().removeCapability(GroundCapability.CAN_BE_SOWED_ON);
-                for (Item item: location.getItems()){
-                    if (item != this) {
-                        location.removeItem(item);
-                    }
+//                for (Item item: location.getItems()){
+//                    location.removeItem(item);
+//                }
+                for (int i = location.getItems().size()-1; i >= 0; i--){
+                    location.removeItem(location.getItems().get(i));
                 }
-                currentLocation.removeItem(this);
+//                currentLocation.removeItem(this);
                 if (location.containsAnActor()) {
                     Actor actor = location.getActor();
                     actor.hurt(DAMAGE);

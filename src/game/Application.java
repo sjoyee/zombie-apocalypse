@@ -75,7 +75,7 @@ public class Application {
 		GameMap townMap = new GameMap(groundFactory, town);
 		world.addGameMap(townMap);
 		
-		Actor player = new Player("Player", '@', 1000);
+		Actor player = new Player("Player", '@', 100);
 		world.addPlayer(player, gameMap.at(38, 15));
 		
 	    // Place some random humans
@@ -111,12 +111,12 @@ public class Application {
 		gameMap.at(60, 20).addItem(new Plank());
 
 		// place a vehicle in compound map to move to town
-		Vehicle vehicle = new Vehicle("Car to town", 'v');
+		Vehicle vehicle = new Vehicle("Car to town");
 		vehicle.addAction(new MoveActorAction(townMap.at(35,16), "to Town"));
 		gameMap.at(39, 15).addItem(vehicle);
 
 		// place a vehicle in town to move to compound map
-		Vehicle vehicleInTown = new Vehicle("Car to compound", 'v');
+		Vehicle vehicleInTown = new Vehicle("Car to compound");
 		townMap.at(35, 16).addItem(vehicleInTown);
 		vehicleInTown.addAction(new MoveActorAction(gameMap.at(39, 15), "to Compound Map"));
 
