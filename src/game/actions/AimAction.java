@@ -16,15 +16,19 @@ public class AimAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		String result="";
-		if(target.hasCapability(AimCapability.ROUND1)) {
+		String result="No aim";
+		
+		if(!actor.hasCapability(AimCapability.CONCENTRATION)) { 
+			actor.addCapability(AimCapability.CONCENTRATION);
+		}
+		if(!target.hasCapability(AimCapability.ROUND1)){
+			target.addCapability(AimCapability.ROUND1);
+			result = "Aim for first round";
+		}
+		if(target.hasCapability(AimCapability.ROUND1) && actor.hasCapability(AimCapability.CONCENTRATION)) {
 			target.removeCapability(AimCapability.ROUND1);
 			target.addCapability(AimCapability.ROUND2);
 			result = "Aim for second round";
-		}
-		else if(!target.hasCapability(AimCapability.ROUND1)) {
-			target.addCapability(AimCapability.ROUND1);
-			result = "Aim for first round";
 		}
 		
 		return result;
@@ -32,7 +36,6 @@ public class AimAction extends Action {
 
 	@Override
 	public String menuDescription(Actor actor) {
-		// TODO Auto-generated method stub
 		return " Aim " + target;
 	}
 
