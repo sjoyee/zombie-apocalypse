@@ -20,5 +20,6 @@ public enum ZombieCapability {
 	 */
 	FARM,
 	CHANT,
-	MAMBO
+	MAMBO,
+	VANISH
 }

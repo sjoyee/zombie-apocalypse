@@ -21,22 +21,30 @@ public class ShootAction extends AttackAction{
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		String result = "";
-		if(target.hasCapability(AimCapability.ROUND1)) {
-			damage = damage * 2;
+		String result = actor + " misses " + target;
+		double chances = Math.random();
+		if(!target.hasCapability(AimCapability.ROUND1) && !target.hasCapability(AimCapability.ROUND2)) {
+			if(chances <= 0.75) {
+				target.hurt(damage);
+				result = actor + " shoots " + target + " for " + damage + " damage";
+			}
+		}
+		else if(target.hasCapability(AimCapability.ROUND1)  && actor.hasCapability(AimCapability.CONCENTRATION)) {
+			if(chances <= 0.9) {
+				damage = damage * 2;
+				target.hurt(damage);
+				result = actor + " shoots " + target + " for " + damage + " damage";
+			}
 		}
 
-		if(target.hasCapability(AimCapability.ROUND2)) {
+		else if(target.hasCapability(AimCapability.ROUND2)  && actor.hasCapability(AimCapability.CONCENTRATION)) {
 			result = actor + " instakill " + target;
-//			damage = 1000;
-		}
-		else{
-			target.hurt(damage);
-			result += actor + " shoots " + target + " for " + damage + " damage";
 		}
 
+		this.removeCapability(target);
 		if (ammo != null) {
 			actor.removeItemFromInventory(ammo);
+			
 		}
 		if (!target.isConscious() || target.hasCapability(AimCapability.ROUND2)) {
 			Item corpse = new PortableItem("dead " + target, '%');
@@ -61,6 +69,11 @@ public class ShootAction extends AttackAction{
 //			result += System.lineSeparator() + target + " is killed.";
 //		}
 //		return result;
+	}
+	private void removeCapability( Actor actor) {
+//		actor.removeCapability(AimCapability.CONCENTRATION);
+		actor.removeCapability(AimCapability.ROUND1);
+		actor.removeCapability(AimCapability.ROUND2);
 	}
 
 	@Override

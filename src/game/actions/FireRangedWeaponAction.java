@@ -66,10 +66,10 @@ public class FireRangedWeaponAction extends Action {
             int x = map.locationOf(actor).x();
     		int y = map.locationOf(actor).y();
     		int startx = x - range;
-    		int starty = y - range;
+    		int starty = y - range - 1;
     		boolean noActorWithinRange = true;
-    		for(int i = startx ; i < startx + (2 * range) + 1; i++) {
-    			for(int j = starty ; j < starty + (2 * range) + 1; j++) {
+    		for(int i = startx ; i < startx + (2 * range) +1; i++) {
+    			for(int j = starty ; j < starty + (2 * range) +1 ; j++) {
     				boolean ret = false;
     				try {
     					ret = map.at(i, j).containsAnActor();
