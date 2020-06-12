@@ -25,7 +25,7 @@ public class FireSniperRifleAction extends Action{
 		Actions actions = new Actions();
 		Display display = new Display();
 		Action menuAction;
-		String result="hi";
+		String result="NO action";
 		if(!actor.hasCapability(AimCapability.CONCENTRATION)){
 			actions.add(new AimAction(target));
 			actions.add(new ShootAction(target,damage, ammo));

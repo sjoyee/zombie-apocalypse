@@ -82,8 +82,7 @@ public class FireRangedWeaponAction extends Action {
     				    // Ignore the location which is outside the range of the map
                     }
     				if(ret && map.at(i, j)!= map.at(x, y)) {
-    					action = new FireSniperRifleAction(map.at(i, j).getActor(), rangedWeapon.asWeapon().damage(), ammo);
-    					actions.add(action);
+    					actions.add(new FireSniperRifleAction(map.at(i, j).getActor(), rangedWeapon.asWeapon().damage(), ammo));
     					noActorWithinRange = false;
     				}
     			}
