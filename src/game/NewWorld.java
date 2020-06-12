@@ -11,9 +11,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class NewWorld extends World{
-	private GameMap compoundMap;
-	protected Actor  marie;
+
+    /**
+     * The compound map.
+     */
+    private GameMap compoundMap;
+
+	protected Actor marie;
 	private Location mamboLocation;
+
 	public NewWorld(Display display) {
 		super(display);
 	}
@@ -79,14 +85,35 @@ public class NewWorld extends World{
 		
 	}
 
+    /**
+     * Set the compound map.
+     *
+     * @param map the compound map.
+     */
 	public void setCompoundMap(GameMap map){
 		this.compoundMap = map;
 	}
+
+    /**
+     * Returns true if the game is still running.
+     *
+     * The game is considered to be still running when the player has not won, lost or removed from the map.
+     *
+     * @return true if the player has not won, lost or removed from the map.
+     */
 	@Override
 	protected boolean stillRunning() {
 		return !win() && !lose() && super.stillRunning();
 	}
 
+    /**
+     * Execute the same functionality as {@link World#processActorTurn} to give an Actor its turn.
+     *
+     * Inherits the method to catch {@code IllegalArgumentException} if player is moving from map to map and the location
+     * where the actor is moving to already contains an Actor.
+     *
+     * @param actor the Actor whose turn it is.
+     */
 	@Override
 	protected void processActorTurn(Actor actor) {
 		try {
@@ -97,6 +124,11 @@ public class NewWorld extends World{
 		}
 	}
 
+    /**
+     * Return a string that can be displayed when the game ends.
+     *
+     * @return the string based on the status of the game.
+     */
 	@Override
 	protected String endGameMessage() {
 		String result = "";
@@ -112,6 +144,11 @@ public class NewWorld extends World{
 		return result;
 	}
 
+    /**
+     * Get all actors located in the compound map and return a collection of those actors.
+     *
+     * @return the collection of actors located in the compound map.
+     */
 	private ArrayList<Actor> getAllActors(){
 		ArrayList<Actor> actorArrayList = new ArrayList<>();
 		for (int x: compoundMap.getXRange()){
@@ -124,18 +161,29 @@ public class NewWorld extends World{
 		return actorArrayList;
 	}
 
+    /**
+     * Check whether the player wins the game.
+     * Player wins the game when all zombies and the Mambo Marie are killed.
+     *
+     * @return true if player wins, else false.
+     */
 	private boolean win(){
 		for (Actor actor: getAllActors()){
 			if (actor.hasCapability(ZombieCapability.UNDEAD) || actor.hasCapability(ZombieCapability.MAMBO)){
 				return false;
 			}
-			else if (!actor.hasCapability(ZombieCapability.MAMBO) && marie.hasCapability(ZombieCapability.VANISH)){
+			else if (!actor.hasCapability(ZombieCapability.MAMBO) && actor.hasCapability(ZombieCapability.VANISH)){
 				return false;
 			}
 		}
 		return true;
 	}
 
+    /**
+     * Check whether the player loses the game.
+     * Player loses the game when all humans and its subclass are killed.
+     * @return true if player loses, else false.
+     */
 	private boolean lose(){
 		for (Actor actor: getAllActors()){
 			if (actor.hasCapability(ZombieCapability.ALIVE) && actor != player){
