@@ -51,7 +51,7 @@ public class Player extends Human {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
-		if(!(lastAction instanceof FireRangedWeaponAction)) {
+		if(this.hasCapability(AimCapability.CONCENTRATION) && !(lastAction instanceof FireRangedWeaponAction)) {
 			display.println("Player loses concentration");		
 			this.removeCapability(AimCapability.CONCENTRATION);
 		}

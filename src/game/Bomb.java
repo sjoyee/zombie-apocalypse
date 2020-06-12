@@ -5,19 +5,31 @@ import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import java.util.ArrayList;
-import java.util.Random;
 
+/**
+ * A bomb which is a type of Item and hurt Actors when it explodes.
+ *
+ * @author Siang Jo Yee
+ */
 public class Bomb extends Item {
 
-    private Random rand = new Random();
     /***
-     * Constructor.
-     *
+     * Create a Bomb object which is not portable using a String that specifies its name and a char that specifies it display character.
      */
     public Bomb() {
         super("bomb", 'b', false);
     }
 
+    /**
+     * Allow Bomb to experience the passage of time and has 20% probability to explode when an actor steps on it.
+     * Once the bomb explodes, any type of items and grounds on the locations that are included in {@code locationList}
+     * will vanish and turn to {@code Dirt} respectively. These {@code Dirt} would lose the capability to allow crop to
+     * be sowed on it anymore due to the explosion of bomb. The bomb will also hurt all the actors located on those locations.
+     *
+     * The locations in {@code locationList} are the current location and the adjacent locations where the bomb is located.
+     *
+     * @param currentLocation The location of the ground on which this bomb is located.
+     */
     @Override
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
@@ -27,7 +39,7 @@ public class Bomb extends Item {
         for (Exit exit: currentLocation.getExits()){
             locationList.add(exit.getDestination());
         }
-        if (rand.nextDouble() <= 0.9 && currentLocation.containsAnActor()) {
+        if (Math.random() <= 0.2 && currentLocation.containsAnActor()) {
             System.out.println("BOOM! A bomb explodes! " + currentLocation.getActor() + " steps on the bomb!");
             for (Location location : locationList) {
                 location.setGround(new Dirt());
