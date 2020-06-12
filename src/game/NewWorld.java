@@ -108,9 +108,8 @@ public class NewWorld extends World{
 		ArrayList<Actor> actorArrayList = new ArrayList<>();
 		for (int x: compoundMap.getXRange()){
 			for (int y: compoundMap.getYRange()) {
-				if (compoundMap.at(x,y).getActor()!= null){
-					Actor actor = compoundMap.at(x, y).getActor();
-					actorArrayList.add(actor);
+				if (compoundMap.at(x,y).containsAnActor()){
+					actorArrayList.add(compoundMap.at(x, y).getActor());
 				}
 			}
 		}
@@ -119,7 +118,10 @@ public class NewWorld extends World{
 
 	private boolean win(){
 		for (Actor actor: getAllActors()){
-			if (actor.hasCapability(ZombieCapability.UNDEAD)){
+			if (actor.hasCapability(ZombieCapability.UNDEAD) || actor.hasCapability(ZombieCapability.MAMBO)){
+				return false;
+			}
+			else if (!actor.hasCapability(ZombieCapability.MAMBO) && marie.hasCapability(ZombieCapability.VANISH)){
 				return false;
 			}
 		}
