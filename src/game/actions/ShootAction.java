@@ -41,15 +41,15 @@ public class ShootAction extends AttackAction{
 			result = actor + " instakill " + target;
 		}
 
-		this.removeCapability(target);
 		if (ammo != null) {
 			actor.removeItemFromInventory(ammo);
 			
 		}
-		if (!target.isConscious() || target.hasCapability(AimCapability.ROUND2)) {
+		if (!target.isConscious()) { // || target.hasCapability(AimCapability.ROUND2)
 			Item corpse = new PortableItem("dead " + target, '%');
 			result += System.lineSeparator() + deadActor(map, corpse);
 		}
+		this.removeCapability(target);
 		return result;
 
 //		target.hurt(damage);

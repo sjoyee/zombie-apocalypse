@@ -31,7 +31,7 @@ public class Player extends Human {
 	
 	public void hurt(int damage) {
 		super.hurt(damage);
-//		this.removeCapability(AimCapability.CONCENTRATION);
+		this.removeCapability(AimCapability.CONCENTRATION);
 	}
 
 	/**

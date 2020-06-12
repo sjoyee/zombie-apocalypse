@@ -40,12 +40,12 @@ public class SummonZombieAction extends Action{
 		}
 		for (String name: zombies){
 			do {
-				x = (int) Math.floor(Math.random() * 20.0 + 30.0);
-				y = (int) Math.floor(Math.random() * 7.0 + 5.0);
+				x = (int) Math.floor(Math.random() *78 + 1);
+				y = (int) Math.floor(Math.random() * 23 + 1);
 			}
 			while (map.at(x, y).containsAnActor());
 			map.at(x,  y).addActor(new Zombie(name));
-			result += System.lineSeparator() + "Zombie" + name + " is summoned!";
+			result += System.lineSeparator() + "Zombie " + name + " is summoned!";
 		}
 		return result;
 	}

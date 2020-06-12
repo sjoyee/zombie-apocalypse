@@ -75,8 +75,8 @@ public class Application {
 		GameMap townMap = new GameMap(groundFactory, town);
 		world.addGameMap(townMap);
 		
-		Actor player = new Player("Player", '@', 100);
-		world.addPlayer(player, gameMap.at(38, 15));
+		Actor player = new Player("Player", '@', 1000);
+		world.addPlayer(player, gameMap.at(65, 20));
 		
 	    // Place some random humans
 		String[] humans = {"Carlton", "May", "Vicente", "Andrea", "Wendy",

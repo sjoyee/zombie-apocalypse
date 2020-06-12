@@ -16,12 +16,11 @@ public class AimAction extends Action {
 
 	@Override
 	public String execute(Actor actor, GameMap map) {
-		String result="No aim";
-		
+		String result="";
 		if(!actor.hasCapability(AimCapability.CONCENTRATION)) { 
 			actor.addCapability(AimCapability.CONCENTRATION);
-//			target.removeCapability(AimCapability.ROUND1);
-//			target.removeCapability(AimCapability.ROUND2);
+			target.removeCapability(AimCapability.ROUND1);
+			target.removeCapability(AimCapability.ROUND2);
 		}
 		if(!target.hasCapability(AimCapability.ROUND1)){
 			target.addCapability(AimCapability.ROUND1);

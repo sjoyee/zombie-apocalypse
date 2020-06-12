@@ -26,17 +26,34 @@ public class FireSniperRifleAction extends Action{
 		Display display = new Display();
 		Action menuAction;
 		String result="hi";
-		if(target.hasCapability(AimCapability.ROUND1)) {
+		if(!actor.hasCapability(AimCapability.CONCENTRATION)){
 			actions.add(new AimAction(target));
 			actions.add(new ShootAction(target,damage, ammo));
 		}
-		else if(target.hasCapability(AimCapability.ROUND2) && actor.hasCapability(AimCapability.CONCENTRATION)) {
-			actions.add( new ShootAction(target,damage, ammo));
+		else{
+			if(target.hasCapability(AimCapability.ROUND1)) {
+				actions.add(new AimAction(target));
+				actions.add(new ShootAction(target,damage, ammo));
+			}
+			else if(target.hasCapability(AimCapability.ROUND2)){
+				actions.add(new ShootAction(target,damage, ammo));
+			}
+			else {
+				actions.add(new AimAction(target));
+				actions.add(new ShootAction(target,damage, ammo));
+			}
 		}
-		else if(!target.hasCapability(AimCapability.ROUND1) && !target.hasCapability(AimCapability.ROUND2 )){
-			actions.add(new AimAction(target));
-			actions.add(new ShootAction(target,damage, ammo));
-		}
+//		if(target.hasCapability(AimCapability.ROUND1)) {
+//			actions.add(new AimAction(target));
+//			actions.add(new ShootAction(target,damage, ammo));
+//		}
+//		else if(target.hasCapability(AimCapability.ROUND2) && actor.hasCapability(AimCapability.CONCENTRATION)) {
+//			actions.add( new ShootAction(target,damage, ammo));
+//		}
+//		else if(!target.hasCapability(AimCapability.ROUND1) && !target.hasCapability(AimCapability.ROUND2 )){
+//			actions.add(new AimAction(target));
+//			actions.add(new ShootAction(target,damage, ammo));
+//		}
 		menuAction = menu.showMenu(actor, actions, display);
         if (menuAction != null){
             return menuAction.execute(actor, map);

@@ -62,9 +62,17 @@ public class NewWorld extends World{
 //			Random rand = new Random();
 			double chances = Math.random();
 			if(chances <=0.05) {
-				actorLocations.add(marie,mamboLocation);
-				marie.removeCapability(ZombieCapability.VANISH);
-				System.out.println("Mambo Marie has reappear!!!!!!!!!!");
+				try {
+					actorLocations.add(marie,mamboLocation);
+				}
+				catch(IllegalArgumentException e) {
+					System.out.println(" Mambo marie can't return if an actor is on its location. ");
+				}
+				if(mamboLocation.getActor().equals(marie)) {
+					marie.removeCapability(ZombieCapability.VANISH);
+					System.out.println("Mambo Marie has reappear!!!!!!!!!!");
+				}
+				
 			}
 
 		}
