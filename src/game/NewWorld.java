@@ -17,13 +17,23 @@ public class NewWorld extends World{
      */
     private GameMap compoundMap;
 
-	protected Actor marie;
+	/**
+	 *  Mambo Marie
+	 */
+	private Actor marie;
+	/**
+	 * Mambo Marie previous turn location
+	 */
 	private Location mamboLocation;
 
 	public NewWorld(Display display) {
 		super(display);
 	}
 	
+	/**
+	 * Runs the world as parent class
+	 * If mambo marie is not in the game, add her to the game 
+	 */
 	@Override
 	public void run() {
 		if (player == null)
@@ -54,6 +64,9 @@ public class NewWorld extends World{
 		}
 		display.println(endGameMessage());
 	}
+	/**
+	 *  Mambo marie returns the game if it has vanished before
+	 */
 	private void getMambo() {
 		boolean ret = false;
 		for(Actor actor : actorLocations) {
@@ -65,7 +78,6 @@ public class NewWorld extends World{
 
 		}
 		if(!ret && marie.hasCapability(ZombieCapability.VANISH)) {
-//			Random rand = new Random();
 			double chances = Math.random();
 			if(chances <=0.05) {
 				try {
