@@ -164,7 +164,7 @@ public class FireShotgunAction extends Action {
                     }
                 }
                 catch (ArrayIndexOutOfBoundsException e){
-                    //pass
+                    // Ignore the location which is outside the range of the map
                 }
                 if (target != null){
                     Action shootAction = new ShootAction(target, damagePoints, null);
@@ -204,7 +204,7 @@ public class FireShotgunAction extends Action {
                     target = map.at(p1, p2).getActor();
                 }
                 catch (ArrayIndexOutOfBoundsException e){
-                    //pass
+                    // Ignore the location which is outside the range of the map
                 }
                 if (target != null){
                     Action shootAction = new ShootAction(target, damagePoints, null);

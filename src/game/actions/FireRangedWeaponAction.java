@@ -1,6 +1,7 @@
 package game.actions;
 
 import edu.monash.fit2099.engine.*;
+import game.AimCapability;
 import game.ItemCapability;
 
 /**
@@ -59,6 +60,9 @@ public class FireRangedWeaponAction extends Action {
                 actions.add(action);
             }
             actor.removeItemFromInventory(ammo);
+            if(actor.hasCapability(AimCapability.CONCENTRATION)){
+                actor.removeCapability(AimCapability.CONCENTRATION);
+            }
         }
         else if (rangedWeapon.hasCapability(ItemCapability.LOADED_WITH_RIFLE_AMMO)){
             display.println(actor + " choose to fire " + rangedWeapon);
@@ -74,8 +78,8 @@ public class FireRangedWeaponAction extends Action {
     				try {
     					ret = map.at(i, j).containsAnActor();
     				}
-    				catch(ArrayIndexOutOfBoundsException e){
-
+    				catch (ArrayIndexOutOfBoundsException e){
+    				    // Ignore the location which is outside the range of the map
                     }
     				if(ret && map.at(i, j)!= map.at(x, y)) {
     					action = new FireSniperRifleAction(map.at(i, j).getActor(), rangedWeapon.asWeapon().damage(), ammo);
