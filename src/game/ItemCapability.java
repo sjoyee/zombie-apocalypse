@@ -25,11 +25,11 @@ public enum ItemCapability {
 	 */
     LOADED_WITH_RIFLE_AMMO,
 	/**
-	 * Ammo is loaded shotgun
+	 * Ammo which is loaded in shotgun
 	 */
     LOADED_IN_SHOTGUN,
 	/**
-	 * Ammo is loaded in Sniper rifle
+	 * Ammo which is loaded in Sniper rifle
 	 */
     LOADED_IN_RIFLE
 }
