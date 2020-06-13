@@ -42,7 +42,8 @@ public class FireRangedWeaponAction extends Action {
     /**
      * Display the submenu for the chosen ranged weapon if it is loaded with ammunition and fulfil the criteria to be
      * fired if there is any. For shotgun, it could be fired towards eight directions, which are the cardinal and
-     * ordinal directions from the coordinate of the {@code actor}. For sniple rifle, # pls continue thanks
+     * ordinal directions from the coordinate of the {@code actor}. For sniple rifle, it could fire at targets within the range of fire
+     * of 10 spaces horizontally from actor and 6 spaces vertically from actor.
      *
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
@@ -66,11 +67,11 @@ public class FireRangedWeaponAction extends Action {
         }
         else if (rangedWeapon.hasCapability(ItemCapability.LOADED_WITH_RIFLE_AMMO)){
             display.println(actor + " choose to fire " + rangedWeapon);
-            int range = 5;
+            int range = 10;
             int x = map.locationOf(actor).x();
     		int y = map.locationOf(actor).y();
     		int startx = x - range;
-    		int starty = y - range - 1;
+    		int starty = y - range - 4;
     		boolean noActorWithinRange = true;
     		for(int i = startx ; i < startx + (2 * range) +1; i++) {
     			for(int j = starty ; j < starty + (2 * range) +1 ; j++) {
@@ -82,8 +83,7 @@ public class FireRangedWeaponAction extends Action {
     				    // Ignore the location which is outside the range of the map
                     }
     				if(ret && map.at(i, j)!= map.at(x, y)) {
-    					action = new FireSniperRifleAction(map.at(i, j).getActor(), rangedWeapon.asWeapon().damage(), ammo);
-    					actions.add(action);
+    					actions.add(new FireSniperRifleAction(map.at(i, j).getActor(), rangedWeapon.asWeapon().damage(), ammo));
     					noActorWithinRange = false;
     				}
     			}

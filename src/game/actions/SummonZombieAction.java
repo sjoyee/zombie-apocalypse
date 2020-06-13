@@ -6,16 +6,33 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import game.Zombie;
 
+/** Special Action or summoning Zombie 
+ * @author Lua Shi Liang
+ *
+ */
 public class SummonZombieAction extends Action{
+	/**
+	 * The number of Zombies to be summoned
+	 */
 	private int numOfZombies;
 	
+	/** Constructor
+	 * @param num The number of Zombies to be summoned
+	 */
 	public SummonZombieAction(int num) {
 		numOfZombies = num;
 		
 	}
 	
-	
 
+	/**
+	 * Zombies are summoned randomly all over the map
+	 * The names of the zombies are generated randomly.
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * 
+     * @return a string of description on this action for display
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		String result = numOfZombies + " zombies are summoned";
@@ -50,6 +67,12 @@ public class SummonZombieAction extends Action{
 		return result;
 	}
 
+    /**
+     * Return a string of description on this action for display.
+     *
+     * @param actor The actor performing the action.
+     * @return a string of description on this action for display
+     */
 	@Override
 	public String menuDescription(Actor actor) {
 		return actor + "can summon Zombies";

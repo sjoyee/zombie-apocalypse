@@ -19,7 +19,16 @@ public enum ZombieCapability {
 	 * An Actor is capable of farming.
 	 */
 	FARM,
+	/**
+	 * An Actor is capable of chanting.
+	 */
 	CHANT,
+	/**
+	 * An Actor is a MamboMarie.
+	 */
 	MAMBO,
+	/**
+	 * An Actor is capable of Vanishing.
+	 */
 	VANISH
 }
