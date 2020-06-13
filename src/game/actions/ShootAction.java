@@ -8,17 +8,42 @@ import edu.monash.fit2099.engine.Item;
 import game.AimCapability;
 import game.PortableItem;
 
+/** Special action for shooting at actors
+ * @author Lua Shi Liang 
+ *
+ */
 public class ShootAction extends AttackAction{
+	/**
+	 *  The damage of the weapon
+	 */
 	private int damage;
+	/**
+	 *  The ammo of the weapon
+	 */
 	private Item ammo;
 	
 	
+	/**Constructor
+	 * @param target The actor that will be shot
+	 * @param damage The damage of the weapon
+	 * @param ammo The ammo of the weapon
+	 */
 	public ShootAction(Actor target, int damage, Item ammo) {
 		super(target);
 		this.damage = damage;
 		this.ammo = ammo;
 	}
 
+	/**
+	 * If target is aim for one round, damage dealt will be double
+	 * if target is aim for second round, it will be kill instantly
+	 * Provided that actor has concentration.
+	 * 
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * 
+     * @return a string of description on this action for display
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		String result = actor + " misses " + target;
@@ -52,30 +77,23 @@ public class ShootAction extends AttackAction{
 		this.removeCapability(target);
 		return result;
 
-//		target.hurt(damage);
-//		actor.removeItemFromInventory(ammo);
-//		result = actor + " shoots " + target + " for " + damage + " damage ";
-//		if (!target.isConscious()) {
-//			Item corpse = new PortableItem("dead " + target, '%');
-//			map.locationOf(target).addItem(corpse);
-//
-//			Actions dropActions = new Actions();
-//			for (Item item : target.getInventory())
-//				dropActions.add(item.getDropAction());
-//			for (Action drop : dropActions)
-//				drop.execute(target, map);
-//			map.removeActor(target);
-//
-//			result += System.lineSeparator() + target + " is killed.";
-//		}
-//		return result;
+
 	}
+	/** Remove AimCapability.ROUND1 and AimCapability.ROUND2 capability from an actor 
+	 * @param actor The actor's capability that will be removed
+	 */
 	private void removeCapability( Actor actor) {
-//		actor.removeCapability(AimCapability.CONCENTRATION);
+
 		actor.removeCapability(AimCapability.ROUND1);
 		actor.removeCapability(AimCapability.ROUND2);
 	}
 
+    /**
+     * Return a string of description on this action for display.
+     *
+     * @param actor The actor performing the action.
+     * @return a string of description on this action for display
+     */
 	@Override
 	public String menuDescription(Actor actor) {
 		return actor + " shoots " + target;
