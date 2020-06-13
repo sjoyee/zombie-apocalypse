@@ -17,19 +17,19 @@ public enum ItemCapability {
      */
     CRAFTABLE,
 	/**
-	 *  Shotgun ammo
+	 * RangedWeapon item is loaded with shotgun ammo
 	 */
     LOADED_WITH_SHOTGUN_AMMO,
 	/**
-	 *  Sniper rifle ammo
+	 * RangedWeapon item is loaded with sniper rifle ammo
 	 */
     LOADED_WITH_RIFLE_AMMO,
 	/**
-	 *  Shotgun
+	 * Ammo is loaded shotgun
 	 */
     LOADED_IN_SHOTGUN,
 	/**
-	 *  Sniper rifle
+	 * Ammo is loaded in Sniper rifle
 	 */
     LOADED_IN_RIFLE
 }
