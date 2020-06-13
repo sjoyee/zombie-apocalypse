@@ -52,7 +52,6 @@ public class Player extends Human {
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 		if(this.hasCapability(AimCapability.CONCENTRATION) && !(lastAction instanceof FireRangedWeaponAction)) {
-			display.println("Player loses concentration");		
 			this.removeCapability(AimCapability.CONCENTRATION);
 		}
 		if (map.locationOf(this).getGround().hasCapability(GroundCapability.CAN_BE_HARVESTED)){
