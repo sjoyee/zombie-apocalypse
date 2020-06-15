@@ -73,10 +73,6 @@ public class FireShotgunAction extends Action {
         x = here.x();
         y = here.y();
 
-        if (Math.random() <= 0.25){
-            return actor + " fails to fire shotgun ";
-        }
-
         initialResult = actor + " fires shotgun towards " + direction + System.lineSeparator();
 
         if (direction.equals("North")){
