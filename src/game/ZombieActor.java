@@ -49,7 +49,8 @@ public abstract class ZombieActor extends Actor {
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions list = super.getAllowableActions(otherActor, direction, map);
-		if (otherActor.hasCapability(ZombieCapability.UNDEAD) != this.hasCapability(ZombieCapability.UNDEAD))
+		if (otherActor.hasCapability(ZombieCapability.UNDEAD) != this.hasCapability(ZombieCapability.UNDEAD) 
+				|| otherActor.hasCapability(ZombieCapability.ALIVE) == this.hasCapability(ZombieCapability.MAMBO))
 			list.add(new AttackAction(this));
 		return list;
 	}
